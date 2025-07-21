@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+@theme {
+  --color-black: #000000;
+  --color-error: red;
+  --color-lighter-primary: #c4e1e6;
+  --color-light-primary: #a4ccd9;
+  --color-primary: #8dbcc7;
+  --color-white: #fff;
+  --color-border: #efefef;
+}
