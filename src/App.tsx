@@ -1,32 +1,24 @@
 import { useState } from "react";
-import programmerIllustration from "./assets/programmer_illustration.png";
-import programmer from "./assets/programmer.jpg";
 import "./App.css";
+
+import programmerIllustration from "./assets/programmer_illustration.png";
+import pathwayMockup from "./assets/Pathway-mockup.png";
+
+import Skills from "./components/sections/Skills";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className=" w-full min-h-screen">
-      <nav className="sticky top-0 z-50 bg-white/30 backdrop-blur-md border-b border-white/20">
-        <ul className="flex items-center justify-center gap-10 py-4 ">
-          <li className="font-medium cursor-pointer bg-primary text-white p-2 rounded-lg transition-colors">
-            About Me
-          </li>
-          <li className="font-medium cursor-pointer hover:text-primary transition-colors">
-            Skills
-          </li>
-          <li className="font-medium cursor-pointer hover:text-primary transition-colors">
-            Project
-          </li>
-          <li className="font-medium cursor-pointer hover:text-primary transition-colors">
-            Contact Me
-          </li>
-        </ul>
-      </nav>
-      <div className="flex ">
-        <div className="w-1/2 flex justify-center flex-col px-10">
+    <div
+      className=" w-full min-h-screen"
+      id="about"
+    >
+      <Navbar />
+      <div className="flex  px-15">
+        <div className="w-1/2 flex justify-center flex-col">
           <h2 className="text-6xl font-semibold">
             Hi,
-            <br /> I'm Emmanuel,{" "}
+            <br /> I'm Emmanuel,
           </h2>
           <p className="text-4xl leading-relaxed mt-2">
             a seasoned front-end developer proficient in buidling beautiful and
@@ -67,6 +59,18 @@ function App() {
             >
               <path d="M 5 3 C 3.895 3 3 3.895 3 5 L 3 19 C 3 20.105 3.895 21 5 21 L 19 21 C 20.105 21 21 20.105 21 19 L 21 5 C 21 3.895 20.105 3 19 3 L 5 3 z M 5 5 L 19 5 L 19 19 L 5 19 L 5 5 z M 7.7792969 6.3164062 C 6.9222969 6.3164062 6.4082031 6.8315781 6.4082031 7.5175781 C 6.4082031 8.2035781 6.9223594 8.7167969 7.6933594 8.7167969 C 8.5503594 8.7167969 9.0644531 8.2035781 9.0644531 7.5175781 C 9.0644531 6.8315781 8.5502969 6.3164062 7.7792969 6.3164062 z M 6.4765625 10 L 6.4765625 17 L 9 17 L 9 10 L 6.4765625 10 z M 11.082031 10 L 11.082031 17 L 13.605469 17 L 13.605469 13.173828 C 13.605469 12.034828 14.418109 11.871094 14.662109 11.871094 C 14.906109 11.871094 15.558594 12.115828 15.558594 13.173828 L 15.558594 17 L 18 17 L 18 13.173828 C 18 10.976828 17.023734 10 15.802734 10 C 14.581734 10 13.930469 10.406562 13.605469 10.976562 L 13.605469 10 L 11.082031 10 z"></path>
             </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="35"
+              height="35"
+              viewBox="0 0 24 24"
+              className="cursor-pointer fill-black hover:fill-primary transition-colors duration-200 hover:scale-120"
+            >
+              <path d="M 4.5 3 C 2.5788117 3 1 4.5788117 1 6.5 L 1 18 C 1 19.64497 2.3550302 21 4 21 L 8 21 L 8 13.673828 L 12 16.798828 L 16 13.673828 L 16 21 L 20 21 C 21.64497 21 23 19.64497 23 18 L 23 6.5 C 23 4.5788117 21.421188 3 19.5 3 C 18.750123 3 17.982547 3.2422598 17.34375 3.7421875 L 12 7.9121094 L 6.65625 3.7421875 L 6.6542969 3.7421875 C 6.0158061 3.2430811 5.2492693 3 4.5 3 z M 4.5 5 C 4.8301235 5 5.1426247 5.098287 5.4238281 5.3183594 L 6 5.7675781 L 6 9.5742188 L 3 7.2324219 L 3 6.5 C 3 5.6591883 3.6591883 5 4.5 5 z M 19.5 5 C 20.340812 5 21 5.6591883 21 6.5 L 21 7.2324219 L 18 9.5742188 L 18 5.7675781 L 18.576172 5.3183594 C 18.857375 5.0982871 19.169877 5 19.5 5 z M 8 7.328125 L 12 10.449219 L 16 7.328125 L 16 11.136719 L 12 14.261719 L 8 11.136719 L 8 7.328125 z M 3 9.7695312 L 6 12.111328 L 6 19 L 4 19 C 3.4349698 19 3 18.56503 3 18 L 3 9.7695312 z M 21 9.7695312 L 21 18 C 21 18.56503 20.56503 19 20 19 L 18 19 L 18 12.111328 L 21 9.7695312 z"></path>
+            </svg>
           </div>
         </div>
         <img
@@ -76,7 +80,37 @@ function App() {
         />
       </div>
 
-      <div className="bg-lighter-primary min-h-100"></div>
+      <Skills />
+
+      <div className="bg-white min-h-100 px-15 py-10">
+        <h2
+          className="text-4xl font-medium text-center"
+          id="projects"
+        >
+          Projects
+        </h2>
+
+        <div className="grid grid-cols-2 my-10 gap-10">
+          <div className="bg-gray-100 p-10 rounded-xl">
+            <img
+              src={pathwayMockup}
+              alt="UTLAM"
+            />
+          </div>
+
+          <div className="bg-gray-100 p-10 rounded-xl">
+            <img
+              src={pathwayMockup}
+              alt="UTLAM"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="min-h-100 bg-light-primary px-15 py-10"
+        id="contact"
+      ></div>
     </div>
   );
 }

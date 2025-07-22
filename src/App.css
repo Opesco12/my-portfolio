@@ -4,6 +4,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-black: #000000;
   --color-error: red;
