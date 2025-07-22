@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 
 import programmerIllustration from "./assets/programmer_illustration.png";
