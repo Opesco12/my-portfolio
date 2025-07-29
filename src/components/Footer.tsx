@@ -9,7 +9,7 @@ const Footer = () => {
         <p className="text-xl">Front-end Developer</p>
       </div>
 
-      <div className="absolute bottom-5 px-5 py-5 md:px-15 md:py-10  flex flex-col items-center justify-center">
+      <div className="absolute bottom-5 px-5 py-5 md:px-15 md:py-10 md:w-full flex flex-col items-center justify-center">
         <div className="flex gap-5 mb-3">
           <div className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full">
             <svg

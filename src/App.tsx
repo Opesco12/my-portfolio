@@ -6,6 +6,7 @@ import pathwayMockup from "./assets/Pathway-mockup.png";
 import Skills from "./components/sections/Skills";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ProjectBox from "./components/ProjectBox";
 
 function App() {
   return (
@@ -116,20 +117,10 @@ function App() {
           Projects
         </h2>
 
-        <div className="grid my-7 gap-10 md:gap-10 md:my-10 md:grid-cols-2">
-          <div className="bg-gray-100 p-5 md:p-10 rounded-xl">
-            <img
-              src={pathwayMockup}
-              alt="UTLAM"
-            />
-          </div>
-
-          <div className="bg-gray-100 p-5 md:p-10 rounded-xl">
-            <img
-              src={pathwayMockup}
-              alt="UTLAM"
-            />
-          </div>
+        <div className="grid my-7 gap-5 md:gap-10 md:my-10 md:grid-cols-2">
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
         </div>
       </div>
 
