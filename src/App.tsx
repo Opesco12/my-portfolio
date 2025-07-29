@@ -1,7 +1,6 @@
 import "./App.css";
 
 import programmerIllustration from "./assets/programmer_illustration.png";
-import pathwayMockup from "./assets/Pathway-mockup.png";
 
 import Skills from "./components/sections/Skills";
 import Navbar from "./components/Navbar";
