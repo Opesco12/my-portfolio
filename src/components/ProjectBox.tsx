@@ -2,7 +2,7 @@ import pathwayMockup from "../assets/Pathway-mockup.png";
 
 const ProjectBox = () => {
   return (
-    <div className="border border-gray-300 p-4 md:p-10 rounded-xl">
+    <div className="border border-gray-300 p-4 md:p-5 rounded-xl">
       <div className="bg-gray-200 p-2 rounded-lg md:p-5">
         <img
           src={pathwayMockup}
@@ -14,7 +14,7 @@ const ProjectBox = () => {
         <p className="text-sm">
           A standard web application built for Pathway Asset Management.
         </p>
-        <button className="bg-gray-200 px-3 py-4 rounded-lg mt-5 font-medium flex gap-3">
+        <button className="bg-gray-200 px-3 text-sm py-4 rounded-lg mt-5 font-medium flex gap-3">
           View Project{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"

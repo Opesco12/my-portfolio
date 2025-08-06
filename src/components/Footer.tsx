@@ -1,15 +1,15 @@
 const Footer = () => {
   return (
     <footer
-      className="relative min-h-90 bg-lighter-primary px-5 py-5 md:px-15 md:py-10"
+      className="relative min-h-90 bg-lighter-primary "
       id="contact"
     >
-      <div className="text-center md:text-left">
-        <h3 className="text-3xl font-semibold">Emmanuel Oyeleke</h3>
-        <p className="text-xl">Front-end Developer</p>
+      <div className="text-center md:text-left px-5 py-5 md:px-15 md:py-10">
+        <h3 className="text-2xl font-semibold">Emmanuel Oyeleke</h3>
+        <p className="text-lg">Front-end Developer</p>
       </div>
 
-      <div className="absolute bottom-5 px-5 py-5 md:px-15 md:py-10 md:w-full flex flex-col items-center justify-center">
+      <div className="absolute bottom-5 py-5 md:py-10 md:w-screen flex flex-col items-center justify-center">
         <div className="flex gap-5 mb-3">
           <div className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full">
             <svg
