@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import pathwayMockup from "../assets/Pathway-mockup.png";
+
 import CissaMockup from "../assets/cissa.png";
 
 const ProjectBox = () => {

@@ -1,5 +1,4 @@
-import { motion, useAnimation } from "framer-motion";
-import { useEffect, type JSX } from "react";
+import { type JSX } from "react";
 
 interface SkillItem {
   name: string;
@@ -7,36 +6,6 @@ interface SkillItem {
 }
 
 const SkillsCarousel = () => {
-  const controls = useAnimation();
-
-  const handleHoverStart = () => {
-    controls.stop();
-  };
-
-  const handleHoverEnd = () => {
-    controls.start({
-      x: ["10%", "-100%"],
-      transition: {
-        repeat: Infinity,
-        repeatType: "reverse",
-        duration: 20,
-        ease: "linear",
-      },
-    });
-  };
-
-  useEffect(() => {
-    controls.start({
-      x: ["10%", "-100%"],
-      transition: {
-        repeat: Infinity,
-        repeatType: "reverse",
-        duration: 20,
-        ease: "linear",
-      },
-    });
-  }, [controls]);
-
   const skillItems: SkillItem[] = [
     {
       name: "HTML",
