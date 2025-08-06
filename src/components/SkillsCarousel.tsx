@@ -1,29 +1,31 @@
 import { motion, useAnimation } from "framer-motion";
+import type { JSX } from "react";
+
+interface SkillItem {
+  name: string;
+  svg: JSX.Element;
+}
 
 const SkillsCarousel = () => {
   const controls = useAnimation();
-
-  const animation = {
-    x: ["0%", "-100%"],
-    transition: {
-      x: {
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 40,
-        ease: "linear",
-      },
-    },
-  };
 
   const handleHoverStart = () => {
     controls.stop();
   };
 
   const handleHoverEnd = () => {
-    controls.start(animation);
+    controls.start({
+      x: ["0%", "100%"],
+      transition: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 40,
+        ease: "linear",
+      },
+    });
   };
 
-  const skillItems: { name: string; svg: any }[] = [
+  const skillItems: SkillItem[] = [
     {
       name: "HTML",
       svg: (
@@ -262,7 +264,6 @@ const SkillsCarousel = () => {
           initial={{ x: "0%" }}
           onHoverStart={handleHoverStart}
           onHoverEnd={handleHoverEnd}
-          custom={animation}
         >
           {[...skillItems, ...skillItems, ...skillItems].map((skill) => (
             <div
