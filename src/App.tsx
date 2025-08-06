@@ -4,7 +4,6 @@ import {
   Route,
   Outlet,
 } from "react-router-dom";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 import "./App.css";
 import Home from "./pages/Home";
