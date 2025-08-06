@@ -3,7 +3,7 @@ import SkillsCarousel from "../SkillsCarousel";
 const Skills = () => {
   return (
     <div
-      className="py-5 md:py-10 "
+      className="max-w-6xl mx-auto p-5  md:py-10 "
       id="skills"
     >
       <h2 className="font-medium text-center text-lg md:text-2xl">

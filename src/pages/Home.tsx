@@ -32,7 +32,7 @@ const Home = () => {
             >
               About Me
             </h2>
-            <p className="text-xl leading-relaxed mt-2 text-justify ">
+            <p className=" leading-relaxed mt-2 text-justify md:text-lg">
               I'm a seasoned front-end developer proficient in buidling
               beautiful and efficient user interfaces using React and React
               Native. Coding is a passion to me as it enables me to express my
