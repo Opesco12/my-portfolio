@@ -14,7 +14,7 @@ const Home = () => {
     >
       <div className="md:max-w-6xl mx-auto">
         <motion.div
-          className="py-10 px-5 md:px-20"
+          className="py-10 px-5 "
           initial={{ y: 50, opacity: 0 }} // Start off-screen and invisible
           animate={{ y: 0, opacity: 1 }} // Slide in and fade in
           transition={{ duration: 0.5 }}
@@ -126,10 +126,10 @@ const Home = () => {
 
       <div className="min-h-100 py-5 px-5 md:max-w-6xl mx-auto">
         <h2
-          className="text-lg font-medium text-center mb-5 md:text-2xl"
+          className="text-lg font-medium  mb-5 md:text-2xl"
           id="projects"
         >
-          Projects
+          Here are some projects I've worked on
         </h2>
 
         <div className="grid my-7 gap-5 md:gap-10 md:my-10 md:grid-cols-2">
@@ -137,6 +137,7 @@ const Home = () => {
           <ProjectBox />
           <ProjectBox />
         </div>
+
         <div className="flex justify-center">
           <button
             className="flex gap-1 items-center bg-gray-200 text-sm px-3 py-4 rounded-lg mt-5 font-medium m-auto cursor-pointer hover:bg-gray-300"

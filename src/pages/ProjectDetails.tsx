@@ -1,18 +1,66 @@
 import QRCode from "react-qr-code";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 import TechnologyBox from "../components/TechnologyBox";
+
 import CissaMockup from "../assets/cissa.png";
+import PathwayMockup from "../assets/Pathway-mockup.png";
 
 const ProjectDetails = () => {
   const technologies = ["react-native", "expo", "google maps"];
   return (
-    <div className="max-w-6xl mx-auto p-3">
+    <div className="max-w-6xl mx-auto p-3 py-5 md:py-10">
       <div className="grid md:grid-cols-4 md:gap-5">
-        <img
+        {/* <img
           src={CissaMockup}
           alt="project image"
           className="rounded-xl col-span-3"
-        />
+        /> */}
+        <div className="col-span-3 bg-gray-50 rounded-lg overflow-hidden">
+          <Carousel
+            className="max-w-full"
+            plugins={[
+              Autoplay({
+                delay: 4000,
+              }),
+            ]}
+          >
+            <CarouselContent>
+              <CarouselItem>
+                <img
+                  src={CissaMockup}
+                  alt="project image"
+                  // className="rounded-xl"
+                />
+              </CarouselItem>
+              <CarouselItem>
+                {" "}
+                <img
+                  src={PathwayMockup}
+                  alt="project image"
+                  // className="rounded-xl"
+                />
+              </CarouselItem>
+              <CarouselItem>
+                {" "}
+                <img
+                  src={CissaMockup}
+                  alt="project image"
+                  // className="rounded-xl"
+                />
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
         <div className="hidden md:block">
           <QRCode
             size={256}

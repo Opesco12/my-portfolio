@@ -17,7 +17,7 @@ const WorkExperience = () => {
   return (
     <div className="md:py-5 px-5 md:max-w-6xl mx-auto">
       <h2
-        className="text-lg font-medium text-center mb-5 md:text-2xl"
+        className="text-lg font-medium  mb-5 md:text-2xl"
         id="projects"
       >
         Work Experience

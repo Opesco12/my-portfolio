@@ -13,7 +13,7 @@ const ExperienceItem: React.FC<Props> = ({
   link = "#",
   company,
 }) => (
-  <div className="flex justify-between my-15 md:px-15">
+  <div className="flex justify-between my-15 ">
     <div className="flex gap-1 items-center text-primary">
       <Calendar
         size={20}
