@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import QRCode from "react-qr-code";
 import {
   Carousel,
@@ -7,23 +8,43 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 import TechnologyBox from "../components/TechnologyBox";
+import { type CarouselApi } from "@/components/ui/carousel";
 
 import CissaMockup from "../assets/cissa.png";
 import PathwayMockup from "../assets/Pathway-mockup.png";
 
 const ProjectDetails = () => {
   const technologies = ["react-native", "expo", "google maps"];
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
+  const handleSelect = (index: number) => {
+    api?.scrollTo(index);
+    // let current = api?.selectedScrollSnap();
+    // current = index;
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-3 py-5 md:py-10">
       <div className="grid md:grid-cols-4 md:gap-5">
-        {/* <img
-          src={CissaMockup}
-          alt="project image"
-          className="rounded-xl col-span-3"
-        /> */}
-        <div className="col-span-3 bg-gray-50 rounded-lg overflow-hidden">
+        <div className="col-span-3 rounded-lg overflow-hidden relative">
           <Carousel
             className="max-w-full"
             plugins={[
@@ -31,9 +52,15 @@ const ProjectDetails = () => {
                 delay: 4000,
               }),
             ]}
+            setApi={setApi}
           >
             <CarouselContent>
-              <CarouselItem>
+              <CarouselItem
+                onClick={() => {
+                  setCurrentImageIndex(1);
+                  setIsLightboxOpen(true);
+                }}
+              >
                 <img
                   src={CissaMockup}
                   alt="project image"
@@ -57,8 +84,21 @@ const ProjectDetails = () => {
                 />
               </CarouselItem>
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="absolute left-2" />
+            <CarouselNext className="absolute right-2" />
+
+            {/* Dots Navigation */}
+            <div className="flex justify-center space-x-2 py-4">
+              {[0, 1, 2].map((index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${
+                    current - 1 === index ? "bg-primary" : "bg-gray-300"
+                  }`}
+                  onClick={() => handleSelect(index)}
+                />
+              ))}
+            </div>
           </Carousel>
         </div>
         <div className="hidden md:block">
@@ -148,6 +188,16 @@ const ProjectDetails = () => {
           </div>
         </div>
       </div>
+      <Lightbox
+        index={currentImageIndex}
+        open={isLightboxOpen}
+        close={() => setIsLightboxOpen(false)}
+        slides={[
+          { src: CissaMockup },
+          { src: PathwayMockup },
+          { src: CissaMockup },
+        ]}
+      />
     </div>
   );
 };
