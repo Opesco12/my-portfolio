@@ -12,22 +12,18 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // IntersectionObserver to detect visible section
   useEffect(() => {
-    // Only run IntersectionObserver on the home page
     if (location.pathname !== "/") return;
 
-    // Scroll to top on initial load to ensure "about" is visible
     if (!location.hash) {
-      // window.scrollTo({ top: 0, behavior: "smooth" });
-      setActiveSection("about"); // Ensure "about" is active on load
+      setActiveSection("about");
     }
 
     const sections = ["about", "skills", "experience", "projects"];
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.2, // Trigger when 30% of the section is visible
+      threshold: 0.2,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -38,13 +34,11 @@ const Navbar = () => {
       });
     }, observerOptions);
 
-    // Observe each section
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
 
-    // Handle hash-based navigation on page load
     const hash = location.hash.replace("#", "");
     if (hash && sections.includes(hash)) {
       setActiveSection(hash);
@@ -62,11 +56,8 @@ const Navbar = () => {
     };
   }, [location.pathname, location.hash]);
 
-  // Determine active link based on route or section
   const getActiveLink = () => {
-    // Handle non-home routes
     if (location.pathname === "/projects") return "projects";
-    // For home page, use activeSection
     return location.pathname === "/" ? activeSection : "about";
   };
 

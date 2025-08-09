@@ -49,9 +49,6 @@ const ProjectDetails = () => {
 
   const handleSelect = (index: number) => {
     api?.scrollTo(index);
-
-    // let current = api?.selectedScrollSnap();
-    // current = index;
   };
 
   const dotsArray = (n: number) => {

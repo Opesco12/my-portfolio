@@ -2,6 +2,18 @@ import type { Project } from "./types/project";
 
 export const myProjects: Project[] = [
   {
+    title: "1Click by STL",
+    subtitle: "",
+    description: "",
+    images: [
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/stl.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/stl.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/stl_2.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/stl_3.png",
+    ],
+    technologies: ["react native", "expo", "postman"],
+  },
+  {
     title: "CISSA App",
     subtitle:
       "A digital handbook built as a project work for the faculty of communication and information sciences, University of Ilorin.",

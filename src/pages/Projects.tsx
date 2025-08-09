@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 import ProjectBox from "../components/ProjectBox";
 
 import { myProjects } from "@/projects";
