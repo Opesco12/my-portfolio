@@ -1,5 +1,5 @@
 import { type JSX } from "react";
-import { motion, scale } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface SkillItem {
   name: string;
