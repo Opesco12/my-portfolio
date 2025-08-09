@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("about"); // Default to 'about'
+  const [activeSection, setActiveSection] = useState("about");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -11,46 +12,22 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Handle scroll locking for mobile menu
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-    } else {
-      const scrollY = document.body.style.top;
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0") * -1);
-      }
-    }
-
-    return () => {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-    };
-  }, [isMenuOpen]);
-
   // IntersectionObserver to detect visible section
   useEffect(() => {
     // Only run IntersectionObserver on the home page
     if (location.pathname !== "/") return;
 
-    const sections = ["about", "skills", "projects", "contact"];
+    // Scroll to top on initial load to ensure "about" is visible
+    if (!location.hash) {
+      // window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("about"); // Ensure "about" is active on load
+    }
+
+    const sections = ["about", "skills", "experience", "projects"];
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5, // Trigger when 50% of the section is visible
+      threshold: 0.2, // Trigger when 30% of the section is visible
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -67,25 +44,37 @@ const Navbar = () => {
       if (element) observer.observe(element);
     });
 
+    // Handle hash-based navigation on page load
+    const hash = location.hash.replace("#", "");
+    if (hash && sections.includes(hash)) {
+      setActiveSection(hash);
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
     return () => {
       sections.forEach((id) => {
         const element = document.getElementById(id);
         if (element) observer.unobserve(element);
       });
     };
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   // Determine active link based on route or section
   const getActiveLink = () => {
+    // Handle non-home routes
     if (location.pathname === "/projects") return "projects";
-    return activeSection;
+    // For home page, use activeSection
+    return location.pathname === "/" ? activeSection : "about";
   };
 
   const navLinks = [
     { name: "About Me", id: "about", href: "/#about" },
     { name: "Skills", id: "skills", href: "/#skills" },
+    { name: "Experience", id: "experience", href: "/#experience" },
     { name: "Projects", id: "projects", href: "/projects" },
-    { name: "Contact Me", id: "contact", href: "/#contact" },
   ];
 
   return (
@@ -111,13 +100,20 @@ const Navbar = () => {
                 onClick={(e) => {
                   if (link.href.startsWith("/#")) {
                     e.preventDefault();
-                    navigate("/");
-                    setTimeout(() => {
+                    if (location.pathname !== "/") {
+                      navigate("/");
+                      setTimeout(() => {
+                        const element = document.getElementById(link.id);
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }, 100);
+                    } else {
                       const element = document.getElementById(link.id);
                       if (element) {
                         element.scrollIntoView({ behavior: "smooth" });
                       }
-                    }, 0);
+                    }
                   }
                 }}
               >
@@ -141,7 +137,12 @@ const Navbar = () => {
           </div>
         )}
         {isMenuOpen && (
-          <div className="absolute inset-0 h-screen z-[100] bg-gradient-to-r from-lighter-primary to-primary backdrop-blur-md opacity-97">
+          <motion.div
+            initial={{ x: -100 }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute w-screen bg-light-primary/95 h-screen top-0 z-[100] backdrop-blur-md"
+          >
             <div className="flex items-center justify-end px-4 py-2 md:hidden">
               <svg
                 onClick={toggleMenu}
@@ -158,7 +159,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <li
                   key={link.id}
-                  className={`text-2xl cursor-pointer transition-colors ${
+                  className={`cursor-pointer transition-colors ${
                     getActiveLink() === link.id
                       ? "text-white bg-primary p-2 rounded-lg"
                       : "text-white hover:text-gray-200"
@@ -170,13 +171,20 @@ const Navbar = () => {
                       toggleMenu();
                       if (link.href.startsWith("/#")) {
                         e.preventDefault();
-                        navigate("/");
-                        setTimeout(() => {
+                        if (location.pathname !== "/") {
+                          navigate("/");
+                          setTimeout(() => {
+                            const element = document.getElementById(link.id);
+                            if (element) {
+                              element.scrollIntoView({ behavior: "smooth" });
+                            }
+                          }, 100);
+                        } else {
                           const element = document.getElementById(link.id);
                           if (element) {
                             element.scrollIntoView({ behavior: "smooth" });
                           }
-                        }, 0);
+                        }
                       }
                     }}
                   >
@@ -185,7 +193,7 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         )}
       </div>
     </nav>

@@ -1,16 +1,62 @@
-const Footer = () => {
-  return (
-    <footer
-      className="relative min-h-90 bg-lighter-primary "
-      id="contact"
-    >
-      <div className="text-center md:text-left px-5 py-5 md:px-15 md:py-10">
-        <h3 className="text-2xl font-semibold">Emmanuel Oyeleke</h3>
-        <p className="text-lg">Front-end Developer</p>
-      </div>
+import { motion } from "framer-motion";
 
-      <div className="absolute bottom-5 py-5 md:py-10 md:w-screen flex flex-col items-center justify-center">
-        <div className="flex gap-5 mb-3">
+const About = () => {
+  return (
+    <div
+      id="about"
+      className="md:max-w-6xl mx-auto"
+    >
+      <motion.div
+        className="py-10 px-5 "
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="my-10 md:text-left md:my-15">
+          <h2 className="text-4xl font-semibold md:text-6xl">
+            Hi, I'm Emmanuel,
+          </h2>
+          <p className="text-xl leading-relaxed mt-2 ">Front-end Developer</p>
+        </div>
+        <div>
+          <h2 className="text-lg font-medium  mt-10 md:text-2xl">About Me</h2>
+          <p className=" leading-relaxed my-2 text-justify md:text-lg">
+            I'm Emmanuel, a seasoned front-end developer proficient in buidling
+            beautiful and efficient user interfaces using React and React
+            Native.
+          </p>
+          <p className="leading-relaxed my-2 text-justify md:text-lg">
+            I have 3+ years building beautiful and interactive interfaces.
+            Coding is a passion to me as it enables me to express my thoughts
+            and visual preferences. I work with some programming languages and
+            frameworks including; Javascript, Typescript, Python, React, React
+            Native amongst others.
+          </p>
+          <p className="leading-relaxed my-2 text-justify md:text-lg">
+            I'm a graduate of Information Technology and a self taught
+            programmer exploring life to find my path.
+          </p>
+        </div>
+        <div>
+          <button className="flex gap-2 cursor-pointer items-center justify-center self-start bg-primary  text-white py-4 px-5 my-10 rounded-lg  hover:bg-light-primary">
+            Download Resume
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-chevron-right-icon lucide-chevron-right"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex gap-5 my-5 md:my-10">
           <div className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,14 +132,9 @@ const Footer = () => {
             </svg>
           </div>
         </div>
-        <p className="my-3 text-center md:text-left">
-          Feel free to reach out if you have a gig or an opportunity for me!
-        </p>
-        <hr className="border-primary w-1/3 m-auto mb-5" />
-        <p className="text-sm text-center">created with ❤️ by me.</p>
-      </div>
-    </footer>
+      </motion.div>
+    </div>
   );
 };
 
-export default Footer;
+export default About;

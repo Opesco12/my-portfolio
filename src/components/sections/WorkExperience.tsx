@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import ExperienceItem from "../ExperienceItem";
 
 const WorkExperience = () => {
@@ -15,13 +17,15 @@ const WorkExperience = () => {
   ];
 
   return (
-    <div className="md:py-5 px-5 md:max-w-6xl mx-auto">
-      <h2
-        className="text-lg font-medium  mb-5 md:text-2xl"
-        id="projects"
-      >
-        Work Experience
-      </h2>
+    <motion.div
+      id="experience"
+      initial={{ y: 50, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.1, duration: 0.5 }}
+      viewport={{ once: true, amount: 0.3 }}
+      className="md:my-15 px-5 md:max-w-6xl mx-auto"
+    >
+      <h2 className="text-lg font-medium  mb-5 md:text-2xl">Work Experience</h2>
 
       <div>
         {experiences.map(({ timeline, title, company, link }) => (
@@ -33,7 +37,7 @@ const WorkExperience = () => {
           />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

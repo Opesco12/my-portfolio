@@ -1,4 +1,5 @@
 import { type JSX } from "react";
+import { motion, scale } from "framer-motion";
 
 interface SkillItem {
   name: string;
@@ -386,10 +387,10 @@ const SkillsCarousel = () => {
   return (
     <div className="relative overflow-hidden py-5">
       <div className="relative w-full overflow-hidden">
-        {/* <div className="flex flex-wrap item-center justify-between gap-y-3"> */}
         <div className="grid grid-cols-3 gap-3 md:grid-cols-5 lg:grid-cols-7">
           {skillItems.map((skill) => (
-            <div
+            <motion.div
+              whileHover={{ scale: 1.1 }}
               className="bg-gray-100 rounded-xl p-2"
               key={`${skill.name}-${Math.random()}`}
             >
@@ -397,7 +398,7 @@ const SkillsCarousel = () => {
               <p className="text-sm text-gray-700 text-center font-medium">
                 {skill.name}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
