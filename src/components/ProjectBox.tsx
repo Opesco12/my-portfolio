@@ -17,8 +17,9 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({ project }) => {
     <motion.div
       initial={{ y: 50, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.1, duration: 0.5 }}
+      transition={{ duration: 0.3 }}
       viewport={{ once: true, amount: 0.4 }}
+      whileHover={{ scale: 1.03, animationDuration: 0.2 }}
       className="bg-gray-50 flex flex-col border border-gray-300 p-3 md:p-5 rounded-xl"
     >
       <div className="bg-gray-200 rounded-lg overflow-hidden">
