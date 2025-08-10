@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 
+import resume from "../../assets/oyeleke.pdf";
+
 const About = () => {
   return (
     <div
@@ -37,23 +39,29 @@ const About = () => {
             programmer exploring life to find my path.
           </p>
         </div>
-        <div>
-          <button className="flex gap-2 cursor-pointer items-center justify-center self-start bg-primary  text-white py-4 px-5 my-10 rounded-lg  hover:bg-light-primary">
-            Download Resume
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              className="lucide lucide-chevron-right-icon lucide-chevron-right"
+        <div className="my-10 ">
+          <button className="bg-primary cursor-pointer text-white py-4 px-5 rounded-lg  hover:bg-light-primary">
+            <a
+              href={resume}
+              download={"oyeleke.pdf"}
+              className="flex gap-2 items-center justify-center self-start"
             >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
+              Download Resume
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-chevron-right-icon lucide-chevron-right"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </a>
           </button>
         </div>
         <div className="flex gap-5 my-5 md:my-10">

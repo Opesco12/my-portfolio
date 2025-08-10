@@ -18,12 +18,14 @@ import {
 import TechnologyBox from "../components/TechnologyBox";
 
 import { myProjects } from "@/projects";
+import type { Project } from "@/types/project";
 
 import { type CarouselApi } from "@/components/ui/carousel";
 
 const ProjectDetails = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [project, setProject] = useState<Project | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -32,9 +34,15 @@ const ProjectDetails = () => {
 
   if (!params) navigate("/", { replace: true });
 
-  const project = myProjects.find(
-    (project) => _.kebabCase(project.title) === params.project
-  );
+  useEffect(() => {
+    const project = myProjects?.find(
+      (project) => _.kebabCase(project.title) === params.project
+    );
+    if (project) {
+      setProject(project);
+      console.log(project);
+    }
+  }, []);
 
   useEffect(() => {
     if (!api) {
@@ -115,17 +123,19 @@ const ProjectDetails = () => {
         {project?.mobileApp && (
           <div className="hidden md:block">
             {project?.expoUrl && (
-              <QRCode
-                size={256}
-                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                value={project?.expoUrl}
-                viewBox={`0 0 256 256`}
-              />
+              <>
+                <QRCode
+                  size={256}
+                  style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                  value={project?.expoUrl}
+                  viewBox={`0 0 256 256`}
+                />
+                <p className="text-center py-2 text-sm md:text-lg">
+                  Scan to open in expo go
+                </p>
+              </>
             )}
 
-            <p className="text-center py-2 text-sm md:text-lg">
-              Scan to open in expo go
-            </p>
             <button className=" bg-black w-full text-white py-4 my-2 rounded-lg hover:bg-black/85">
               <a
                 href={project?.url}
@@ -168,7 +178,7 @@ const ProjectDetails = () => {
             ))}
           </div>
           <div className="my-5 md:hidden">
-            {project?.mobileApp && (
+            {project?.mobileApp && project?.expoUrl && (
               <>
                 <QRCode
                   size={256}
