@@ -34,10 +34,10 @@ const About = () => {
             frameworks including; Javascript, Typescript, Python, React, React
             Native amongst others.
           </p>
-          <p className="leading-relaxed my-2 text-justify md:text-lg">
+          {/* <p className="leading-relaxed my-2 text-justify md:text-lg">
             I'm a graduate of Information Technology and a self taught
             programmer exploring life to find my path.
-          </p>
+          </p> */}
         </div>
         <div className="my-10 ">
           <button className="bg-primary cursor-pointer text-white py-4 px-5 rounded-lg  hover:bg-light-primary">
