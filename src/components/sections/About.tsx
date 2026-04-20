@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className=" px-4 md:px-40"
+      className="px-4 md:px-40"
     >
       <motion.div
         className="py-10"

@@ -18,7 +18,7 @@ const Home = () => {
 
       <WorkExperience />
 
-      <div className="min-h-100 py-5 px-5 md:max-w-6xl mx-auto">
+      <div className="min-h-100 py-5 px-4 md:px-40">
         <motion.h2
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

@@ -23,7 +23,7 @@ const WorkExperience = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1, duration: 0.5 }}
       viewport={{ once: true, amount: 0.3 }}
-      className="md:my-15 py-10 px-5 md:max-w-6xl mx-auto"
+      className="md:my-15 py-10 px-4 md:px-40 mx-auto"
     >
       <h2 className="text-lg font-medium mb-3 md:text-2xl">Work Experience</h2>
 
