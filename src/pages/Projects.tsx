@@ -7,7 +7,7 @@ const Projects = () => {
     <section className="px-4 py-8 md:px-40 md:py-12">
       <div className="mx-auto max-w-6xl">
         <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
-          Selected Work
+          Selected Works
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
           Projects
@@ -17,12 +17,12 @@ const Projects = () => {
         </p>
 
         <div className="mt-8 grid gap-5 md:mt-10 md:grid-cols-2 md:gap-8">
-        {myProjects.map((project, index) => (
-          <ProjectBox
-            key={index}
-            project={project}
-          />
-        ))}
+          {myProjects.map((project, index) => (
+            <ProjectBox
+              key={index}
+              project={project}
+            />
+          ))}
         </div>
       </div>
     </section>

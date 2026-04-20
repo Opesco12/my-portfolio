@@ -39,7 +39,7 @@ const ProjectDetails = () => {
     }
 
     const project = myProjects?.find(
-      (project) => _.kebabCase(project.title) === params.project
+      (project) => _.kebabCase(project.title) === params.project,
     );
     if (project) {
       setProject(project);
@@ -80,12 +80,9 @@ const ProjectDetails = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1, duration: 0.5 }}
       viewport={{ once: true, amount: 0.4 }}
-      className="mx-auto max-w-6xl px-4 py-8 md:py-12"
+      className="mx-auto px-4 md:px-40 py-8 md:py-12"
     >
       <div className="mb-6">
-        <p className="text-sm uppercase tracking-[0.2em] text-primary">
-          Project Details
-        </p>
         <h1 className="mt-2 text-3xl font-semibold text-slate-900 md:text-4xl">
           {project?.title}
         </h1>
@@ -117,7 +114,7 @@ const ProjectDetails = () => {
                   <img
                     src={image}
                     alt="project image"
-                    className="mx-auto h-full w-full object-contain"
+                    className="mx-auto min-h-100 w-full object-contain"
                   />
                 </CarouselItem>
               ))}
@@ -141,7 +138,7 @@ const ProjectDetails = () => {
           </Carousel>
         </div>
         {project?.mobileApp && (
-          <div className="hidden rounded-2xl border border-slate-200 bg-white p-4 md:block">
+          <div className="hidden h-fit rounded-2xl border border-slate-200 bg-white p-4 md:block">
             {project?.expoUrl && (
               <>
                 <QRCode
@@ -207,7 +204,9 @@ const ProjectDetails = () => {
                 value={project.expoUrl}
                 viewBox={`0 0 256 256`}
               />
-              <p className="py-2 text-center text-sm">Scan to open in expo go</p>
+              <p className="py-2 text-center text-sm">
+                Scan to open in expo go
+              </p>
             </div>
           )}
 

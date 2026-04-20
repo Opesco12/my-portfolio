@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="px-4 py-8 md:px-40 md:py-12"
+      className="px-4 py-8 md:px-40 md:py-12 md:my-25"
     >
       <motion.div
         className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm md:p-12"
@@ -19,8 +19,8 @@ const About = () => {
             </p>
           </div>
 
-          <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-6xl">
-            Hi, I&apos;m Emmanuel,
+          <h2 className="mt-6 text-2xl font-semibold leading-tight md:text-6xl">
+            Hi, <br /> I&apos;m Emmanuel,
             <br />A Software Developer.
           </h2>
 
