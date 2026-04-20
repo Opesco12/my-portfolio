@@ -2,10 +2,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer
-      className="relative min-h-90 bg-lighter-primary "
-      id="contact"
-    >
+    <footer className="relative min-h-90 bg-lighter-primary ">
       <div className="text-center md:text-left px-5 py-5 md:px-15 md:py-10">
         <h3 className="text-2xl font-semibold">Emmanuel Oyeleke</h3>
         <p className="text-lg">Front-end Developer</p>

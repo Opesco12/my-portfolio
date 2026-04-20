@@ -12,6 +12,24 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     if (location.pathname !== "/") return;
 
@@ -19,7 +37,7 @@ const Navbar = () => {
       setActiveSection("about");
     }
 
-    const sections = ["about", "skills", "experience", "projects"];
+    const sections = ["about", "skills", "experience", "projects", "contact"];
     const observerOptions = {
       root: null,
       rootMargin: "0px",
@@ -70,13 +88,13 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-white/30 backdrop-blur-md border-b border-white/20 py-2 px-4 md:px-40">
-      <div className="flex items-center justify-between  mx-auto">
+      <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-4">
         <div>
           <p className="text-4xl px-5 md:text-5xl text-primary font-extrabold">
             {"< / >"}
           </p>
         </div>
-        <ul className="sm:flex items-center justify-center hidden py-4 gap-4 sm:text-sm md:gap-10">
+        <ul className="hidden md:flex items-center justify-center py-4 gap-4 sm:text-sm lg:gap-10">
           {navLinks.map((link) => (
             <li
               key={link.id}
@@ -91,20 +109,7 @@ const Navbar = () => {
                 onClick={(e) => {
                   if (link.href.startsWith("/#")) {
                     e.preventDefault();
-                    if (location.pathname !== "/") {
-                      navigate("/");
-                      setTimeout(() => {
-                        const element = document.getElementById(link.id);
-                        if (element) {
-                          element.scrollIntoView({ behavior: "smooth" });
-                        }
-                      }, 100);
-                    } else {
-                      const element = document.getElementById(link.id);
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }
+                    scrollToSection(link.id);
                   }
                 }}
               >
@@ -113,6 +118,18 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+        <div className="hidden md:flex items-center justify-end">
+          <a
+            href="/#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("contact");
+            }}
+            className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/85"
+          >
+            Contact Me
+          </a>
+        </div>
         {!isMenuOpen && (
           <div className="flex items-center justify-end px-4 py-2 md:hidden">
             <svg
@@ -162,20 +179,7 @@ const Navbar = () => {
                       toggleMenu();
                       if (link.href.startsWith("/#")) {
                         e.preventDefault();
-                        if (location.pathname !== "/") {
-                          navigate("/");
-                          setTimeout(() => {
-                            const element = document.getElementById(link.id);
-                            if (element) {
-                              element.scrollIntoView({ behavior: "smooth" });
-                            }
-                          }, 100);
-                        } else {
-                          const element = document.getElementById(link.id);
-                          if (element) {
-                            element.scrollIntoView({ behavior: "smooth" });
-                          }
-                        }
+                        scrollToSection(link.id);
                       }
                     }}
                   >
@@ -183,6 +187,19 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleMenu();
+                    scrollToSection("contact");
+                  }}
+                  className="rounded-lg bg-primary px-5 py-3 font-semibold text-white"
+                >
+                  Contact Me
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}
