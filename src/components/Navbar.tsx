@@ -69,8 +69,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/30 backdrop-blur-md border-b border-white/20 py-2 md:px-20">
-      <div className="flex items-center justify-between max-w-6xl mx-auto">
+    <nav className="sticky top-0 z-50 bg-white/30 backdrop-blur-md border-b border-white/20 py-2 px-4 md:px-40">
+      <div className="flex items-center justify-between  mx-auto">
         <div>
           <p className="text-4xl px-5 md:text-5xl text-primary font-extrabold">
             {"< / >"}
