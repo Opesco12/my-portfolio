@@ -41,7 +41,7 @@ const Home = () => {
         transition={{ delay: 0.1, duration: 0.5 }}
         viewport={{ once: true, amount: 0.4 }}
         id="projects"
-        className="min-h-100 py-5 px-4 md:px-40"
+        className="py-8 px-4 md:py-12 md:px-40"
       >
         <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
           Projects I've worked on

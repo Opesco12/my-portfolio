@@ -26,7 +26,7 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({ project }) => {
         <img
           src={images[0]}
           alt={title}
-          className="min-h-85 w-full object-cover"
+          className="w-full object-cover aspect-video"
         />
       </div>
       <div className="mt-5 flex flex-1 flex-col justify-between">
