@@ -18,17 +18,17 @@ const Home = () => {
 
       <WorkExperience />
 
-      <div className="min-h-100 py-5 px-4 md:px-40">
-        <motion.h2
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          viewport={{ once: true, amount: 0.4 }}
-          className="text-lg font-medium  mb-5 md:text-2xl"
-          id="projects"
-        >
-          Here are some projects I've worked on
-        </motion.h2>
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
+        viewport={{ once: true, amount: 0.4 }}
+        id="projects"
+        className="min-h-100 py-5 px-4 md:px-40"
+      >
+        <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
+          Projects I've worked on
+        </p>
 
         <div className="grid my-7 gap-5 md:gap-10 md:my-10 md:grid-cols-2">
           {myProjects.map((project, index) => (
@@ -61,7 +61,7 @@ const Home = () => {
             </svg>
           </button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

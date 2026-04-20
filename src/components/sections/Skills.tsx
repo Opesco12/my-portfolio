@@ -12,9 +12,9 @@ const Skills = () => {
       className=" mx-auto px-4 md:px-40  md:my-10 "
       id="skills"
     >
-      <h2 className="font-medium text-lg md:text-2xl">
+      <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
         Skills, Technologies & Tools
-      </h2>
+      </p>
       <SkillsCarousel />
     </motion.div>
   );

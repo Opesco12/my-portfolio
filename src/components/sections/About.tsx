@@ -17,7 +17,7 @@ const About = () => {
         <div className="grid items-center gap-12 md:my-12 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
           <div>
             <div className="my-10 md:my-0 md:text-left">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
                 About Me
               </p>
               <h2 className="mt-4 text-5xl  font-semibold leading-tight md:text-7xl">

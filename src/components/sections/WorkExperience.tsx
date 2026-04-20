@@ -10,8 +10,8 @@ const WorkExperience = () => {
     },
     {
       timeline: "2024-present",
-      title: "Frontend Developer",
-      company: "Plethora",
+      title: "Frontend Developer(Web & Mobile)",
+      company: "Plethora.ng",
       link: "https://www.plethora.ng/",
     },
   ];
@@ -25,7 +25,9 @@ const WorkExperience = () => {
       viewport={{ once: true, amount: 0.3 }}
       className="md:my-15 py-10 px-4 md:px-40 mx-auto"
     >
-      <h2 className="text-lg font-medium mb-3 md:text-2xl">Work Experience</h2>
+      <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
+        Work Experience
+      </p>
 
       <div>
         {experiences.map(({ timeline, title, company, link }) => (
