@@ -19,25 +19,26 @@ const ProjectBox: React.FC<ProjectBoxProps> = ({ project }) => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3 }}
       viewport={{ once: true, amount: 0.4 }}
-      whileHover={{ scale: 1.03, animationDuration: 0.2 }}
-      className="bg-gray-50 flex flex-col border border-gray-300 p-3 md:p-5 rounded-xl"
+      whileHover={{ y: -4 }}
+      className="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md md:p-5"
     >
-      <div className="bg-gray-200 rounded-lg overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
         <img
           src={images[0]}
-          alt="UTLAM"
+          alt={title}
+          className="min-h-85 w-full object-cover"
         />
       </div>
-      <div className="mt-5 flex flex-col justify-between flex-1">
+      <div className="mt-5 flex flex-1 flex-col justify-between">
         <div>
-          <p className="font-medium">{title}</p>
-          <p className="text-sm">{subtitle}</p>
+          <p className="text-lg font-semibold text-slate-900">{title}</p>
+          <p className="mt-2 text-sm text-slate-600">{subtitle}</p>
         </div>
         <button
-          className="bg-gray-200 px-3 text-sm py-4 rounded-lg mt-5 font-medium flex self-start gap-3 cursor-pointer hover:bg-gray-300"
+          className="mt-5 flex cursor-pointer self-start items-center gap-2 rounded-lg border border-slate-300 bg-slate-100 px-4 py-3 text-sm font-medium text-slate-800 transition-colors hover:bg-slate-200"
           onClick={() => navigate(`/projects/${_.kebabCase(title)}`)}
         >
-          View Project{" "}
+          View Project
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

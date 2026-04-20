@@ -1,23 +1,54 @@
 import { motion } from "framer-motion";
 
 const Footer = () => {
-  return (
-    <footer className="relative min-h-90 bg-lighter-primary ">
-      <div className="text-center md:text-left px-5 py-5 md:px-15 md:py-10">
-        <h3 className="text-2xl font-semibold">Emmanuel Oyeleke</h3>
-        <p className="text-lg">Front-end Developer</p>
-      </div>
+  const year = new Date().getFullYear();
 
-      <div className="absolute bottom-5 py-5 md:py-10 md:w-screen flex flex-col items-center justify-center">
-        <div className="flex gap-5 mb-3">
+  return (
+    <footer className="border-t border-slate-200 bg-light-primary px-4 py-10 md:px-40">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+          <div>
+            <h3 className="text-2xl font-semibold text-slate-900">
+              Emmanuel Oyeleke
+            </h3>
+            <p className="mt-2 text-base text-slate-600">Front-end Developer</p>
+            <p className="mt-3 max-w-md text-sm text-slate-500">
+              Building thoughtful interfaces and scalable user experiences for
+              modern web and mobile products.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3 text-sm text-slate-600">
+            <a
+              href="/#about"
+              className="transition-colors hover:text-primary"
+            >
+              About
+            </a>
+            <a
+              href="/#projects"
+              className="transition-colors hover:text-primary"
+            >
+              Projects
+            </a>
+            <a
+              href="/#contact"
+              className="transition-colors hover:text-primary"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-4">
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full"
+            whileHover={{ scale: 1.08 }}
+            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
           >
             <a
               href="https://github.com/Opesco12"
               target="_blank"
-              className=""
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -32,12 +63,13 @@ const Footer = () => {
             </a>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full"
+            whileHover={{ scale: 1.08 }}
+            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
           >
             <a
               href="https://x.com/Opesco123"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -52,12 +84,13 @@ const Footer = () => {
             </a>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full"
+            whileHover={{ scale: 1.08 }}
+            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
           >
             <a
               href="https://www.linkedin.com/in/emmanuel-oyeleke-330469320/"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,12 +112,13 @@ const Footer = () => {
             </a>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.2 }}
-            className="h-12 w-12 flex items-center justify-center bg-light-primary rounded-full"
+            whileHover={{ scale: 1.08 }}
+            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
           >
             <a
               href="mailto:oyelekemmanuel@gmail.com"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,11 +152,12 @@ const Footer = () => {
             </a>
           </motion.div>
         </div>
-        <p className="my-3 text-center md:text-left">
-          Feel free to reach out if you have a gig or an opportunity for me!
-        </p>
-        <hr className="border-primary w-1/3 m-auto mb-5" />
-        <p className="text-sm text-center">created with ❤️ by me.</p>
+
+        <div className="mt-8 border-t border-slate-200 pt-5">
+          <p className="text-sm text-slate-500">
+            © {year} Emmanuel Oyeleke. Built with care.
+          </p>
+        </div>
       </div>
     </footer>
   );

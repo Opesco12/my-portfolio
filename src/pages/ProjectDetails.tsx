@@ -32,27 +32,34 @@ const ProjectDetails = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  if (!params) navigate("/", { replace: true });
-
   useEffect(() => {
+    if (!params.project) {
+      navigate("/", { replace: true });
+      return;
+    }
+
     const project = myProjects?.find(
       (project) => _.kebabCase(project.title) === params.project
     );
     if (project) {
       setProject(project);
-      console.log(project);
+    } else {
+      navigate("/projects", { replace: true });
     }
-  }, []);
+  }, [navigate, params.project]);
 
   useEffect(() => {
     if (!api) {
       return;
     }
-    setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
+    setCurrent(api.selectedScrollSnap());
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   const handleSelect = (index: number) => {
@@ -73,12 +80,24 @@ const ProjectDetails = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1, duration: 0.5 }}
       viewport={{ once: true, amount: 0.4 }}
-      className="max-w-6xl mx-auto p-3 py-5 md:py-10"
+      className="mx-auto max-w-6xl px-4 py-8 md:py-12"
     >
-      <div className="grid md:grid-cols-4 md:gap-5">
-        <div className="col-span-3 rounded-lg overflow-hidden relative">
+      <div className="mb-6">
+        <p className="text-sm uppercase tracking-[0.2em] text-primary">
+          Project Details
+        </p>
+        <h1 className="mt-2 text-3xl font-semibold text-slate-900 md:text-4xl">
+          {project?.title}
+        </h1>
+        <p className="mt-2 text-sm text-slate-600 md:text-base">
+          {project?.subtitle}
+        </p>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-4">
+        <div className="relative col-span-3 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
           <Carousel
-            className="max-w-full bg-gray-50"
+            className="max-w-full"
             plugins={[
               Autoplay({
                 delay: 4000,
@@ -89,6 +108,7 @@ const ProjectDetails = () => {
             <CarouselContent>
               {project?.images.slice(1).map((image, index) => (
                 <CarouselItem
+                  key={image}
                   onClick={() => {
                     setCurrentImageIndex(index);
                     setIsLightboxOpen(true);
@@ -97,7 +117,7 @@ const ProjectDetails = () => {
                   <img
                     src={image}
                     alt="project image"
-                    className="mx-auto h-full"
+                    className="mx-auto h-full w-full object-contain"
                   />
                 </CarouselItem>
               ))}
@@ -112,7 +132,7 @@ const ProjectDetails = () => {
                   <button
                     key={index}
                     className={`w-2 h-2 rounded-full ${
-                      current - 1 === index ? "bg-primary" : "bg-gray-300"
+                      current === index ? "bg-primary" : "bg-gray-300"
                     }`}
                     onClick={() => handleSelect(index)}
                   />
@@ -121,7 +141,7 @@ const ProjectDetails = () => {
           </Carousel>
         </div>
         {project?.mobileApp && (
-          <div className="hidden md:block">
+          <div className="hidden rounded-2xl border border-slate-200 bg-white p-4 md:block">
             {project?.expoUrl && (
               <>
                 <QRCode
@@ -136,65 +156,68 @@ const ProjectDetails = () => {
               </>
             )}
 
-            <button className=" bg-black w-full text-white py-4 my-2 rounded-lg hover:bg-black/85">
-              <a
-                href={project?.url}
-                target="_blank"
-                className="flex gap-2 items-center justify-center"
+            <a
+              href={project?.url}
+              target="_blank"
+              rel="noreferrer"
+              className="my-2 flex w-full items-center justify-center gap-2 rounded-lg bg-black py-4 text-white transition-colors hover:bg-black/85"
+            >
+              View Live
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-chevron-right-icon lucide-chevron-right"
               >
-                View Live
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="lucide lucide-chevron-right-icon lucide-chevron-right"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-              </a>
-            </button>
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </a>
           </div>
         )}
       </div>
-      <div className="my-5">
-        <h3 className="text-lg font-semibold md:text-2xl">{project?.title}</h3>
-        <p className="text-sm md:text-lg">{project?.subtitle}</p>
-        <div className="bg-gray-50 rounded-xl my-5 p-5">
-          <p className="font-semibold">Description</p>
-          <p className="text-justify text-sm">{project?.description}</p>
-          <p className="font-semibold mt-3">Technologies</p>
-          <div className="my-2 flex gap-2 flex-wrap">
-            {project?.technologies.map((tech, index) => (
-              <TechnologyBox
-                technology={tech}
-                key={index}
-              />
-            ))}
-          </div>
-          <div className="my-5 md:hidden">
-            {project?.mobileApp && project?.expoUrl && (
-              <>
-                <QRCode
-                  size={256}
-                  style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                  value={
-                    "https://expo.dev/preview/update?message=add+unilorin+logo&updateRuntimeVersion=1.0.0&createdAt=2025-08-06T15%3A14%3A06.016Z&slug=CISSA&projectId=78caa94b-cbe4-4587-ae49-e9854764d342&group=b32bceef-b51a-434a-b046-ce68539d6fdf"
-                  }
-                  viewBox={`0 0 256 256`}
-                />
-                <p className="text-center py-2 text-sm md:text-lg">
-                  Scan to open in expo go
-                </p>
-              </>
-            )}
 
-            <button className="flex gap-2 items-center justify-center bg-black w-full text-white py-4 my-5 rounded-lg hover:bg-black/85">
+      <div className="my-6 rounded-2xl border border-slate-200 bg-white p-5 md:p-7">
+        <p className="font-semibold text-slate-900">Description</p>
+        <p className="mt-2 text-justify text-sm text-slate-700 md:text-base">
+          {project?.description}
+        </p>
+
+        <p className="mt-5 font-semibold text-slate-900">Technologies</p>
+        <div className="my-3 flex flex-wrap gap-2">
+          {project?.technologies.map((tech, index) => (
+            <TechnologyBox
+              technology={tech}
+              key={index}
+            />
+          ))}
+        </div>
+
+        <div className="mt-6">
+          {project?.mobileApp && project?.expoUrl && (
+            <div className="my-5 rounded-xl border border-slate-200 bg-slate-50 p-4 md:hidden">
+              <QRCode
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={project.expoUrl}
+                viewBox={`0 0 256 256`}
+              />
+              <p className="py-2 text-center text-sm">Scan to open in expo go</p>
+            </div>
+          )}
+
+          {project?.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-black px-4 py-3 text-white transition-colors hover:bg-black/85 md:w-fit"
+            >
               View Live
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -210,26 +233,7 @@ const ProjectDetails = () => {
               >
                 <path d="m9 18 6-6-6-6" />
               </svg>
-            </button>
-          </div>
-          {!project?.mobileApp && (
-            <button className="md:flex gap-2 items-center justify-center max-w-40 bg-black w-full text-white py-4 mt-15 rounded-lg hidden hover:bg-black/85">
-              View Live
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="lucide lucide-chevron-right-icon lucide-chevron-right"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
+            </a>
           )}
         </div>
       </div>
