@@ -25,7 +25,7 @@ export const myProjects: Project[] = [
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_2.png",
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_3.png",
     ],
-    technologies: ["typescript", "react", "react-native", "expo", "postman"],
+    technologies: ["typescript", "react", "react-native", "expo"],
     // mobileApp: true,
   },
   {
