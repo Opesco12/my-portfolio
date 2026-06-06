@@ -53,10 +53,7 @@ export const myProjects: Project[] = [
     description:
       "Reliance Asset Management is a secure digital platform for investors to access and manage their asset portfolio online. The product begins with a polished login experience and provides a trusted gateway into investment services from a Securities and Exchange Commission–regulated firm in Nigeria. It also includes user support features like embedded chat guidance and clear compliance notice, helping users sign in with confidence. The design focuses on a professional, modern authentication flow and simplifies the first step of accessing investment account management tools. The project also includes a companion mobile app built with Expo, delivering both web and mobile access for investors. ",
     images: [
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_2.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_3.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/reliance.png",
     ],
     technologies: ["typescript", "react", "react-native", "expo", "postman"],
     // mobileApp: true,
