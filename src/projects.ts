@@ -48,6 +48,19 @@ export const myProjects: Project[] = [
   },
 
   {
+    title: "Swifty.ng Landing Page",
+    subtitle: "A landing page for a fintech startup.",
+    description:
+      "This project is a landing page for a fintech startup called Swifty.ng. The landing page is designed to provide information about the company and its services, as well as to encourage visitors to sign up for the platform. The design is clean and modern, with a focus on user experience and conversion optimization. ",
+    images: [
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/swifty.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/swifty_1.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/swifty_2.png",
+    ],
+    technologies: ["typescript", "react", "tailwind"],
+  },
+
+  {
     title: "Reliance Asset Management Web & App",
     subtitle: "A Digital asset management platform",
     description:
@@ -88,6 +101,5 @@ export const myProjects: Project[] = [
     expoUrl:
       "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
     url: "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
-    mobileApp: true,
   },
 ];
