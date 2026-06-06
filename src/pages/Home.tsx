@@ -48,7 +48,7 @@ const Home = () => {
         </p>
 
         <div className="grid my-7 gap-5 md:gap-10 md:my-10 md:grid-cols-2">
-          {myProjects.map((project, index) => (
+          {myProjects.slice(0, 4).map((project, index) => (
             <ProjectBox
               key={index}
               project={project}

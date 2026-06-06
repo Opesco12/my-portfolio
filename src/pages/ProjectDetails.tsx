@@ -105,7 +105,7 @@ const ProjectDetails = () => {
             setApi={setApi}
           >
             <CarouselContent>
-              {project?.images.slice(1).map((image, index) => (
+              {project?.images.map((image, index) => (
                 <CarouselItem
                   key={image}
                   onClick={() => {
