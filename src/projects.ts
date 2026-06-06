@@ -74,4 +74,20 @@ export const myProjects: Project[] = [
     url: "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
     mobileApp: true,
   },
+  {
+    title: "Yonmi's Gloss",
+    subtitle: "An E-commerce platform for beauty products.",
+    description:
+      "This project is an e-commerce platform built specifically for a lip gloss brand. The platform is designed to provide a seamless shopping experience for customers, allowing them to browse and purchase a variety of lip gloss products. The website features a clean and modern design, with easy navigation and a user-friendly interface. It includes product listings, detailed descriptions and customer reviews. There is also an in-built admin dashboard meant to serve as a content management system for the client to easily manage their products, orders and customers.",
+    images: [
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/yonmi.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/yonmi_1.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/yonmi_2.png",
+    ],
+    technologies: ["typescript", "react", "tailwind", "firebase"],
+    expoUrl:
+      "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
+    url: "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
+    mobileApp: true,
+  },
 ];
