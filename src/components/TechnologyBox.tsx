@@ -4,7 +4,7 @@ interface Props {
 
 const TechnologyBox: React.FC<Props> = ({ technology }) => {
   return (
-    <p className="bg-green-100 text-green-500 p-1 px-1.5 rounded-xl text-sm">
+    <p className="bg-green-100 text-green-500 p-1 px-3 rounded-xl text-sm">
       {technology}
     </p>
   );

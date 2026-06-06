@@ -2,9 +2,10 @@ import type { Project } from "./types/project";
 
 export const myProjects: Project[] = [
   {
-    title: "1Click by STL",
-    subtitle: "A Digital asset management platform.",
-    description: "",
+    title: "Ethikavest Investment Dashboard",
+    subtitle: "An Halal based Investment Dashboard",
+    description:
+      "Ethikavest is a Sharia-compliant investment dashboard designed to help users manage ethical savings, investments, and charitable giving. It opens with a secure sign-in experience that reinforces trust and accessibility for modern Muslim investors. The interface is clean and user-focused, making it easy to navigate account access and financial tools. The product emphasizes Islamic finance principles while delivering a polished digital experience. It is built to support ethical wealth growth through compliant investment options and convenient dashboard access.",
     images: [
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/stl.png",
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/stl.png",
@@ -15,9 +16,10 @@ export const myProjects: Project[] = [
     // mobileApp: true,
   },
   {
-    title: "Pathway Assets Management Web & App",
+    title: "Pathway Asset Management Web & App",
     subtitle: "A Digital asset management platform",
-    description: "",
+    description:
+      "Pathway Asset Management is a secure digital platform for investors to access and manage their asset portfolio online. The product begins with a polished login experience and provides a trusted gateway into investment services from a Securities and Exchange Commission–regulated firm in Nigeria. It also includes user support features like embedded chat guidance and clear compliance notice, helping users sign in with confidence. In addition to the web portal, the project includes a companion mobile app built with Expo, and it is launched on both Google Play Store and Apple App Store. ",
     images: [
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
@@ -44,6 +46,21 @@ export const myProjects: Project[] = [
       "https://expo.dev/preview/update?message=add+unilorin+logo&updateRuntimeVersion=1.0.0&createdAt=2025-08-06T15%3A14%3A06.016Z&slug=CISSA&projectId=78caa94b-cbe4-4587-ae49-e9854764d342&group=b32bceef-b51a-434a-b046-ce68539d6fdf",
     url: "https://expo.dev/preview/update?message=add+unilorin+logo&updateRuntimeVersion=1.0.0&createdAt=2025-08-06T15%3A14%3A06.016Z&slug=CISSA&projectId=78caa94b-cbe4-4587-ae49-e9854764d342&group=b32bceef-b51a-434a-b046-ce68539d6fdf",
     mobileApp: true,
+  },
+
+  {
+    title: "Reliance Asset Management Web & App",
+    subtitle: "A Digital asset management platform",
+    description:
+      "Reliance Asset Management is a secure digital platform for investors to access and manage their asset portfolio online. The product begins with a polished login experience and provides a trusted gateway into investment services from a Securities and Exchange Commission–regulated firm in Nigeria. It also includes user support features like embedded chat guidance and clear compliance notice, helping users sign in with confidence. The design focuses on a professional, modern authentication flow and simplifies the first step of accessing investment account management tools. The project also includes a companion mobile app built with Expo, delivering both web and mobile access for investors. ",
+    images: [
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_2.png",
+      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_3.png",
+    ],
+    technologies: ["typescript", "react", "react-native", "expo", "postman"],
+    // mobileApp: true,
   },
   {
     title: "Campus Buddy",

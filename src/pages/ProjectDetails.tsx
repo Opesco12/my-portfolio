@@ -92,7 +92,9 @@ const ProjectDetails = () => {
       </div>
 
       <div className="grid gap-5 md:grid-cols-4">
-        <div className="relative col-span-3 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+        <div
+          className={`relative ${project?.mobileApp ? "col-span-3" : "col-span-4"} overflow-hidden rounded-2xl border border-slate-200 bg-slate-50`}
+        >
           <Carousel
             className="max-w-full"
             plugins={[
@@ -180,12 +182,14 @@ const ProjectDetails = () => {
       </div>
 
       <div className="my-6 rounded-2xl border border-slate-200 bg-white p-5 md:p-7">
-        <p className="font-semibold text-slate-900">Description</p>
-        <p className="mt-2 text-justify text-sm text-slate-700 md:text-base">
+        <p className="font-semibold text-lg text-slate-900">Description</p>
+        <p className="mt-2 text-justify  text-slate-700 md:text-base">
           {project?.description}
         </p>
 
-        <p className="mt-5 font-semibold text-slate-900">Technologies</p>
+        <p className="mt-5 font-semibold text-lg text-slate-900">
+          Technologies
+        </p>
         <div className="my-3 flex flex-wrap gap-2">
           {project?.technologies.map((tech, index) => (
             <TechnologyBox
