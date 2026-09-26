@@ -18,7 +18,7 @@ const Footer = () => {
           <div>
             <a
               href="/#about"
-              className="inline-flex items-center text-primary gap-3 font-display text-2xl font-semibold text-[#171717]"
+              className="inline-flex items-center text-primary gap-3 font-display text-2xl font-semibold "
             >
               Emmanuel Oyeleke
             </a>
