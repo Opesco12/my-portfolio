@@ -439,7 +439,7 @@ const SkillsCarousel = () => {
   const bottomRow = skillItems.slice(midpoint);
 
   return (
-    <div className="relative -mx-4 space-y-3 overflow-hidden py-6 md:-mx-40 md:space-y-4 md:py-8">
+    <div className="relative space-y-3 overflow-hidden py-6 md:space-y-4 md:py-8">
       <SkillRow
         items={topRow}
         direction="left"

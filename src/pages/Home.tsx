@@ -57,7 +57,7 @@ const Home = () => {
 
       <section
         id="projects"
-        className="px-4 py-16 md:px-16 md:py-24 lg:px-40"
+        className="px-5 py-16 sm:px-8 md:py-24"
       >
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -116,9 +116,9 @@ const Home = () => {
         transition={{ delay: 0.1, duration: 0.5 }}
         viewport={{ once: true, amount: 0.35 }}
         id="contact"
-        className="px-4 py-10 md:px-40"
+        className="px-5 py-10 sm:px-8 md:py-16"
       >
-        <div className="rounded-2xl border border-slate-200  p-6 shadow-sm md:p-10">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-slate-200 p-6 shadow-sm md:p-10">
           <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
             Contact
           </p>

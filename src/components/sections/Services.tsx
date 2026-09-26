@@ -33,7 +33,7 @@ const Services = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.2 }}
-      className="bg-[#f6f2e9] px-4 py-16 md:px-40 md:py-24"
+      className="bg-[#f6f2e9] px-5 py-16 sm:px-8 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">

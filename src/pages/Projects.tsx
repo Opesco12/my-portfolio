@@ -4,7 +4,7 @@ import { myProjects } from "@/projects";
 
 const Projects = () => {
   return (
-    <section className="px-4 py-8 md:px-40 md:py-12">
+    <section className="px-5 py-8 sm:px-8 md:py-12">
       <div className="mx-auto max-w-6xl">
         <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
           Selected Works

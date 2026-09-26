@@ -98,15 +98,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sticky top-0 z-50 border-b px-4 py-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 md:px-40 ${
+      className={`sticky top-0 z-50 border-b px-5 py-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:px-8 ${
         isScrolled
           ? "border-white/40 bg-white/25 shadow-[0_8px_32px_rgba(75,46,29,0.08)] backdrop-blur-2xl backdrop-saturate-150"
           : "border-transparent bg-[#f6f2e9] shadow-none backdrop-blur-none"
       }`}
     >
-      <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-4">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-4">
         <div>
-          <p className="text-4xl px-5 md:text-5xl text-primary font-extrabold">
+          <p className="text-4xl font-extrabold text-primary md:text-5xl">
             {"< / >"}
           </p>
         </div>

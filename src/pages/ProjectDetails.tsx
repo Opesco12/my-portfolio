@@ -80,9 +80,10 @@ const ProjectDetails = () => {
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.1, duration: 0.5 }}
       viewport={{ once: true, amount: 0.4 }}
-      className="mx-auto px-4 md:px-40 py-8 md:py-12"
+      className="w-full px-5 py-8 sm:px-8 md:py-12"
     >
-      <div className="mb-6">
+      <div className="mx-auto w-full max-w-6xl">
+        <div className="mb-6">
         <h1 className="mt-2 text-3xl font-semibold text-slate-900 md:text-4xl">
           {project?.title}
         </h1>
@@ -240,18 +241,19 @@ const ProjectDetails = () => {
           )}
         </div>
       </div>
-      {project?.images && (
-        <Lightbox
-          index={currentImageIndex}
-          open={isLightboxOpen}
-          close={() => setIsLightboxOpen(false)}
-          slides={project?.images.map((image) => {
-            return {
-              src: image,
-            };
-          })}
-        />
-      )}
+        {project?.images && (
+          <Lightbox
+            index={currentImageIndex}
+            open={isLightboxOpen}
+            close={() => setIsLightboxOpen(false)}
+            slides={project?.images.map((image) => {
+              return {
+                src: image,
+              };
+            })}
+          />
+        )}
+      </div>
     </motion.div>
   );
 };

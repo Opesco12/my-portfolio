@@ -162,7 +162,7 @@ const About = () => {
 
       <section
         id="about"
-        className="bg-white px-5 py-16 sm:px-8 md:px-16 md:py-24 lg:px-40"
+        className="bg-white px-5 py-16 sm:px-8 md:py-24"
       >
         <motion.div
           initial={{ y: 40, opacity: 0 }}

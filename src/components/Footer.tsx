@@ -12,8 +12,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden border-t border-primary/10 bg-[#f6f2e9] px-5 sm:px-8 md:px-16 lg:px-40">
-      <div className="relative mx-auto max-w-7xl pb-0 pt-10 md:pt-20">
+    <footer className="relative overflow-hidden border-t border-primary/10 bg-[#f6f2e9] px-5 sm:px-8">
+      <div className="relative mx-auto max-w-6xl pb-0 pt-10 md:pt-20">
         <div className="relative z-10 grid gap-10 border-b border-primary/10 py-5 md:grid-cols-[1.5fr_0.7fr_1fr] md:gap-12 md:py-10">
           <div>
             <a
