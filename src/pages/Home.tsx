@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -31,20 +31,45 @@ const featuredProjects = [
   },
 ];
 
+type ContactStatus = "idle" | "submitting" | "success" | "error";
+
 const Home = () => {
-  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [contactStatus, setContactStatus] = useState<ContactStatus>("idle");
+
+  const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const payload = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       subject: String(formData.get("subject") ?? ""),
       message: String(formData.get("message") ?? ""),
+      _gotcha: String(formData.get("_gotcha") ?? ""),
     };
 
-    console.log("Contact form submission:", payload);
-    event.currentTarget.reset();
+    setContactStatus("submitting");
+
+    try {
+      const response = await fetch("https://formspree.io/f/mzezjwdb", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      form.reset();
+      setContactStatus("success");
+    } catch {
+      setContactStatus("error");
+    }
   };
 
   return (
@@ -75,10 +100,6 @@ const Home = () => {
                 Products I&apos;ve helped bring to life.
               </h2>
             </div>
-            <p className="max-w-md text-base leading-7 text-[#625c55]">
-              A closer look at digital experiences I&apos;ve built across web
-              and mobile.
-            </p>
           </motion.div>
 
           <div className="mt-10 space-y-7 md:mt-14 md:space-y-10">
@@ -134,6 +155,14 @@ const Home = () => {
             onSubmit={handleContactSubmit}
             className="mt-8 space-y-4"
           >
+            <input
+              type="text"
+              name="_gotcha"
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
             <div className="grid gap-4 md:grid-cols-2">
               <label className="flex flex-col gap-2 text-sm font-medium text-slate-700">
                 Name
@@ -181,10 +210,34 @@ const Home = () => {
 
             <button
               type="submit"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/85"
+              disabled={contactStatus === "submitting"}
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/85 disabled:cursor-not-allowed disabled:opacity-65"
             >
-              Send Message
+              {contactStatus === "submitting" ? "Sending..." : "Send Message"}
             </button>
+
+            <div
+              aria-live="polite"
+              className="min-h-6 text-sm"
+            >
+              {contactStatus === "success" && (
+                <p className="font-medium text-green-700">
+                  Your message has been sent. I&apos;ll get back to you soon.
+                </p>
+              )}
+              {contactStatus === "error" && (
+                <p className="font-medium text-red-700">
+                  Your message could not be sent. Please try again or{" "}
+                  <a
+                    href="mailto:oyelekemmanuel@gmail.com"
+                    className="underline underline-offset-2"
+                  >
+                    email me directly
+                  </a>
+                  .
+                </p>
+              )}
+            </div>
           </form>
         </div>
       </motion.section>
