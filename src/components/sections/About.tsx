@@ -1,5 +1,38 @@
 import { motion } from "framer-motion";
 
+type AnimatedWordProps = {
+  text: string;
+  startIndex: number;
+  className?: string;
+};
+
+const AnimatedWord = ({
+  text,
+  startIndex,
+  className = "",
+}: AnimatedWordProps) => (
+  <span
+    aria-hidden="true"
+    className={`inline-block whitespace-nowrap ${className}`}
+  >
+    {[...text].map((letter, index) => (
+      <motion.span
+        key={`${letter}-${index}`}
+        className="inline-block"
+        initial={{ opacity: 0, y: "0.25em" }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.35,
+          delay: 0.2 + (startIndex + index) * 0.055,
+          ease: "easeOut",
+        }}
+      >
+        {letter}
+      </motion.span>
+    ))}
+  </span>
+);
+
 const About = () => {
   return (
     <section
@@ -12,14 +45,25 @@ const About = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <h1 className="font-display text-[clamp(3.25rem,8vw,7.75rem)] font-medium leading-[0.9] tracking-[-0.045em] text-[#171717]">
-          <span className="italic font-light">Hello,</span>{" "}
-          <span className="text-primary italic">
-            <span className="font-light">I'm</span>{" "}
-            <span className="font-display text-[1.2em] not-italic">
-              Emmanuel!
-            </span>
-          </span>
+        <h1
+          aria-label="Hello, I'm Emmanuel!"
+          className="font-display text-[clamp(3.25rem,8vw,7.75rem)] font-medium leading-[0.9] tracking-[-0.045em] text-[#171717] lg:whitespace-nowrap"
+        >
+          <AnimatedWord
+            text="Hello,"
+            startIndex={0}
+            className="font-light italic"
+          />{" "}
+          <AnimatedWord
+            text="I'm"
+            startIndex={7}
+            className="font-light italic text-primary"
+          />{" "}
+          <AnimatedWord
+            text="Emmanuel!"
+            startIndex={11}
+            className="text-[1.2em] text-primary"
+          />
         </h1>
 
         <p className="mt-8 max-w-3xl text-lg italic leading-relaxed text-[#242424] sm:text-xl md:mt-10 md:text-[1.7rem] md:leading-[1.45]">
