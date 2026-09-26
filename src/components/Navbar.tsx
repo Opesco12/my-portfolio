@@ -1,6 +1,16 @@
-import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+const sectionIds = ["about", "skills", "services", "projects", "contact"];
+
+const navLinks = [
+  { name: "About", id: "about", href: "/#about" },
+  { name: "Skills", id: "skills", href: "/#skills" },
+  { name: "Services", id: "services", href: "/#services" },
+  { name: "Projects", id: "projects", href: "/#projects" },
+];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,218 +19,284 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const scrollToSection = useCallback(
+    (sectionId: string) => {
+      setActiveSection(sectionId);
+
+      if (location.pathname !== "/") {
+        navigate(`/#${sectionId}`);
+        return;
+      }
+
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+
+      const navbarOffset = 88;
+      const top = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: top - navbarOffset, behavior: "smooth" });
+    },
+    [location.pathname, navigate],
+  );
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 8);
+    const updateNavbar = () => setIsScrolled(window.scrollY > 12);
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", updateNavbar);
   }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-      return;
-    }
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   useEffect(() => {
     if (location.pathname !== "/") return;
 
-    if (!location.hash) {
-      setActiveSection("about");
-    }
+    let animationFrame = 0;
 
-    const sections = ["about", "skills", "services", "projects", "contact"];
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.2,
+    const updateActiveSection = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        const probePosition =
+          window.scrollY + Math.min(window.innerHeight * 0.35, 320);
+        let currentSection = sectionIds[0];
+
+        sectionIds.forEach((id) => {
+          const section = document.getElementById(id);
+          if (!section) return;
+
+          const sectionTop =
+            section.getBoundingClientRect().top + window.scrollY;
+          if (sectionTop <= probePosition) currentSection = id;
+        });
+
+        const isAtPageBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 4;
+
+        setActiveSection(isAtPageBottom ? "contact" : currentSection);
+      });
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    const hash = location.hash.replace("#", "");
-    if (hash && sections.includes(hash)) {
-      setActiveSection(hash);
-      const element = document.getElementById(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
 
     return () => {
-      sections.forEach((id) => {
-        const element = document.getElementById(id);
-        if (element) observer.unobserve(element);
-      });
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
     };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const hash = location.hash.replace("#", "");
+    if (!sectionIds.includes(hash)) return;
+
+    const animationFrame = requestAnimationFrame(() => scrollToSection(hash));
+    return () => cancelAnimationFrame(animationFrame);
+  }, [location.hash, location.pathname, scrollToSection]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
   }, [location.pathname, location.hash]);
 
-  const getActiveLink = () => {
-    if (location.pathname === "/projects") return "projects";
-    return location.pathname === "/" ? activeSection : "about";
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isMenuOpen]);
+
+  const activeLink = location.pathname.startsWith("/projects")
+    ? "projects"
+    : location.pathname === "/"
+      ? activeSection
+      : "about";
+
+  const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname !== "/") return;
+
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const navLinks = [
-    { name: "About Me", id: "about", href: "/#about" },
-    { name: "Skills", id: "skills", href: "/#skills" },
-    { name: "Services", id: "services", href: "/#services" },
-    { name: "Projects", id: "projects", href: "/projects" },
-  ];
-
   return (
-    <nav
-      className={`sticky top-0 z-50 border-b px-5 py-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:px-8 ${
-        isScrolled
-          ? "border-white/40 bg-white/25 shadow-[0_8px_32px_rgba(75,46,29,0.08)] backdrop-blur-2xl backdrop-saturate-150"
-          : "border-transparent bg-[#f6f2e9] shadow-none backdrop-blur-none"
-      }`}
-    >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-4">
-        <div>
-          <p className="text-4xl font-extrabold text-primary md:text-5xl">
+    <>
+      <nav
+        aria-label="Main navigation"
+        className={`sticky top-0 z-50 border-b px-5 py-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 sm:px-8 ${
+          isScrolled
+            ? "border-primary/10 bg-[#f6f2e9]/85 shadow-[0_10px_35px_rgba(75,46,29,0.09)] backdrop-blur-xl"
+            : "border-transparent bg-[#f6f2e9]"
+        }`}
+      >
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-4">
+          <Link
+            to="/"
+            onClick={handleHomeClick}
+            aria-label="Go to the top of the homepage"
+            className="inline-flex h-11 items-center rounded-xl px-3 font-mono text-xl font-bold tracking-[-0.12em] text-primary transition-colors hover:bg-primary hover:text-white"
+          >
             {"< / >"}
-          </p>
-        </div>
-        <ul className="hidden md:flex items-center justify-center py-4 gap-4 sm:text-sm lg:gap-10">
-          {navLinks.map((link) => (
-            <li
-              key={link.id}
-              className={`font-medium cursor-pointer p-2 rounded-lg transition-colors ${
-                getActiveLink() === link.id
-                  ? "bg-primary text-white"
-                  : "hover:text-primary"
-              }`}
-            >
-              <a
-                href={link.href}
-                onClick={(e) => {
-                  if (link.href.startsWith("/#")) {
-                    e.preventDefault();
-                    scrollToSection(link.id);
-                  }
-                }}
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="hidden md:flex items-center justify-end">
-          <a
-            href="/#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("contact");
-            }}
-            className="rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/85"
-          >
-            Contact Me
-          </a>
-        </div>
-        {!isMenuOpen && (
-          <div className="flex items-center justify-end px-4 py-2 md:hidden">
-            <svg
-              onClick={toggleMenu}
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              viewBox="0 0 30 30"
-              className="cursor-pointer"
-            >
-              <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
-            </svg>
-          </div>
-        )}
-        {isMenuOpen && (
-          <motion.div
-            initial={{ x: -100 }}
-            animate={{ x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute w-screen bg-light-primary/95 h-screen top-0 z-[100] backdrop-blur-md"
-          >
-            <div className="flex items-center justify-end px-4 py-2 md:hidden">
-              <svg
-                onClick={toggleMenu}
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                viewBox="0 0 50 50"
-                className="cursor-pointer"
-              >
-                <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>
-              </svg>
-            </div>
-            <ul className="flex flex-col items-center justify-center h-full gap-15 text-lg">
-              {navLinks.map((link) => (
-                <li
-                  key={link.id}
-                  className={`cursor-pointer transition-colors ${
-                    getActiveLink() === link.id
-                      ? "text-white bg-primary p-2 rounded-lg"
-                      : "text-white hover:text-gray-200"
-                  }`}
-                >
+          </Link>
+
+          <ul className="mx-auto hidden items-center gap-1 rounded-full p-1 md:flex">
+            {navLinks.map((link) => {
+              const isActive = activeLink === link.id;
+
+              return (
+                <li key={link.id}>
                   <a
                     href={link.href}
-                    onClick={(e) => {
-                      toggleMenu();
-                      if (link.href.startsWith("/#")) {
-                        e.preventDefault();
-                        scrollToSection(link.id);
-                      }
+                    aria-current={isActive ? "location" : undefined}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      scrollToSection(link.id);
                     }}
+                    className={`block rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-primary text-white shadow-sm"
+                        : "text-[#514b45] hover:bg-primary/8 hover:text-primary"
+                    }`}
                   >
                     {link.name}
                   </a>
                 </li>
-              ))}
-              <li>
+              );
+            })}
+          </ul>
+
+          <div className="hidden items-center justify-end md:flex">
+            <a
+              href="/#contact"
+              onClick={(event) => {
+                event.preventDefault();
+                scrollToSection("contact");
+              }}
+              className={`group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition-colors ${
+                activeLink === "contact"
+                  ? "bg-dark-primary"
+                  : "bg-primary hover:bg-dark-primary"
+              }`}
+            >
+              Let&apos;s talk
+              <ArrowUpRight
+                size={17}
+                strokeWidth={1.9}
+                aria-hidden="true"
+                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open navigation menu"
+            aria-expanded={isMenuOpen}
+            className="flex h-11 w-11 items-center justify-center justify-self-end rounded-full border border-primary/15 bg-white/60 text-[#292621] transition-colors hover:bg-primary hover:text-white md:hidden"
+          >
+            <Menu
+              size={22}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.32, ease: "easeInOut" }}
+            className="fixed inset-0 z-[100] bg-[#241710] px-5 py-3 text-white sm:px-8 md:hidden"
+          >
+            <div className="mx-auto flex h-full max-w-6xl flex-col">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xl font-bold tracking-[-0.12em] text-light-primary">
+                  {"< / >"}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close navigation menu"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:bg-white hover:text-[#241710]"
+                >
+                  <X
+                    size={23}
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+
+              <div className="flex flex-1 flex-col justify-center">
+                <p className="mb-7 text-xs font-semibold uppercase tracking-[0.2em] text-light-primary">
+                  Navigate
+                </p>
+                <ul className="space-y-2">
+                  {navLinks.map((link, index) => {
+                    const isActive = activeLink === link.id;
+
+                    return (
+                      <li key={link.id}>
+                        <a
+                          href={link.href}
+                          aria-current={isActive ? "location" : undefined}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            setIsMenuOpen(false);
+                            scrollToSection(link.id);
+                          }}
+                          className={`flex items-center justify-between border-b py-4 font-display text-3xl transition-colors ${
+                            isActive
+                              ? "border-light-primary text-light-primary"
+                              : "border-white/15 text-white hover:text-light-primary"
+                          }`}
+                        >
+                          <span>{link.name}</span>
+                          <span className="font-sans text-xs text-white/45">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+
                 <a
                   href="/#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleMenu();
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setIsMenuOpen(false);
                     scrollToSection("contact");
                   }}
-                  className="rounded-lg bg-primary px-5 py-3 font-semibold text-white"
+                  className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white"
                 >
-                  Contact Me
+                  Let&apos;s talk
+                  <ArrowUpRight
+                    size={17}
+                    aria-hidden="true"
+                  />
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </motion.div>
         )}
-      </div>
-    </nav>
+      </AnimatePresence>
+    </>
   );
 };
 
