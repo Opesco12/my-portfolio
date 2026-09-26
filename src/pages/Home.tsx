@@ -1,17 +1,37 @@
 import type { FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import Skills from "../components/sections/Skills";
-import ProjectBox from "../components/ProjectBox";
 import Services from "../components/sections/Services";
 import About from "@/components/sections/About";
+import FeaturedProject from "@/components/FeaturedProject";
 
 import { myProjects } from "@/projects";
 
-const Home = () => {
-  const navigate = useNavigate();
+const featuredProjects = [
+  {
+    project: myProjects[1],
+    category: "Fintech · Web & Mobile",
+    summary:
+      "A secure investment platform that gives users a clear, dependable way to access and manage their portfolios across web and mobile.",
+  },
+  {
+    project: myProjects[0],
+    category: "Fintech · Investment Dashboard",
+    summary:
+      "A Sharia-compliant investment experience designed to make ethical savings, investments, and charitable giving easier to manage.",
+  },
+  {
+    project: myProjects[2],
+    category: "Education · Mobile App",
+    summary:
+      "A digital handbook that helps University of Ilorin freshmen find essential faculty information and navigate their campus.",
+  },
+];
 
+const Home = () => {
   const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -35,50 +55,60 @@ const Home = () => {
 
       <Services />
 
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-        viewport={{ once: true, amount: 0.4 }}
+      <section
         id="projects"
-        className="py-8 px-4 md:py-12 md:px-40"
+        className="px-4 py-16 md:px-16 md:py-24 lg:px-40"
       >
-        <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
-          Projects I've worked on
-        </p>
-
-        <div className="grid my-7 gap-5 md:gap-10 md:my-10 md:grid-cols-2">
-          {myProjects.slice(0, 4).map((project, index) => (
-            <ProjectBox
-              key={index}
-              project={project}
-            />
-          ))}
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            className="flex gap-1 items-center bg-gray-200 text-sm px-3 py-4 rounded-lg mt-5 font-medium m-auto cursor-pointer hover:bg-gray-300"
-            onClick={() => navigate("/projects")}
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial={{ y: 35, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.5 }}
+            className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
           >
-            View All
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              className="lucide lucide-chevron-right-icon lucide-chevron-right"
+            <div>
+              <p className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
+                Selected work
+              </p>
+              <h2 className="mt-4 max-w-2xl font-display text-4xl font-medium leading-tight text-[#171717] md:text-5xl">
+                Products I&apos;ve helped bring to life.
+              </h2>
+            </div>
+            <p className="max-w-md text-base leading-7 text-[#625c55]">
+              A closer look at digital experiences I&apos;ve built across web
+              and mobile.
+            </p>
+          </motion.div>
+
+          <div className="mt-10 space-y-7 md:mt-14 md:space-y-10">
+            {featuredProjects.map(({ project, category, summary }, index) => (
+              <FeaturedProject
+                key={project.title}
+                project={project}
+                category={category}
+                summary={summary}
+                index={index}
+              />
+            ))}
+          </div>
+
+          <div className="mt-10 flex justify-center md:mt-14">
+            <Link
+              to="/projects"
+              className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-dark-primary"
             >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
+              View all projects
+              <ArrowRight
+                size={18}
+                strokeWidth={1.8}
+                aria-hidden="true"
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
         </div>
-      </motion.div>
+      </section>
 
       <motion.section
         initial={{ y: 50, opacity: 0 }}
