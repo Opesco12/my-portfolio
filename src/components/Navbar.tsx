@@ -47,7 +47,7 @@ const Navbar = () => {
       setActiveSection("about");
     }
 
-    const sections = ["about", "skills", "experience", "projects", "contact"];
+    const sections = ["about", "skills", "services", "projects", "contact"];
     const observerOptions = {
       root: null,
       rootMargin: "0px",
@@ -92,7 +92,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "About Me", id: "about", href: "/#about" },
     { name: "Skills", id: "skills", href: "/#skills" },
-    { name: "Experience", id: "experience", href: "/#experience" },
+    { name: "Services", id: "services", href: "/#services" },
     { name: "Projects", id: "projects", href: "/projects" },
   ];
 

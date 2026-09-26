@@ -6,6 +6,56 @@ interface SkillItem {
   svg: JSX.Element;
 }
 
+interface SkillRowProps {
+  items: SkillItem[];
+  direction: "left" | "right";
+}
+
+const SkillCard = ({ skill }: { skill: SkillItem }) => (
+  <motion.div
+    whileHover={{ y: -4, scale: 1.03 }}
+    transition={{ duration: 0.2 }}
+    className="flex w-32 shrink-0 flex-col items-center justify-center rounded-2xl border border-primary/10 bg-[#f6f2e9] px-3 py-4 sm:w-40 sm:px-4 sm:py-5 [&_img]:!h-16 [&_img]:!w-16 [&_svg]:!h-16 [&_svg]:!w-16"
+  >
+    {skill.svg}
+    <p className="mt-3 text-center text-sm font-medium text-[#4f4943]">
+      {skill.name}
+    </p>
+  </motion.div>
+);
+
+const SkillRow = ({ items, direction }: SkillRowProps) => (
+  <div className="skills-marquee overflow-hidden py-2">
+    <div
+      className={`flex w-max hover:[animation-play-state:paused] ${
+        direction === "left" ? "skills-marquee-left" : "skills-marquee-right"
+      }`}
+    >
+      {[0, 1].map((copyIndex) => (
+        <div
+          key={copyIndex}
+          className="flex shrink-0"
+        >
+          {[0, 1].map((repeatIndex) => (
+            <div
+              key={repeatIndex}
+              aria-hidden={copyIndex === 1 || repeatIndex === 1}
+              className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4"
+            >
+              {items.map((skill) => (
+                <SkillCard
+                  key={`${copyIndex}-${repeatIndex}-${skill.name}`}
+                  skill={skill}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
 const SkillsCarousel = () => {
   const skillItems: SkillItem[] = [
     {
@@ -384,24 +434,20 @@ const SkillsCarousel = () => {
     },
   ];
 
+  const midpoint = Math.ceil(skillItems.length / 2);
+  const topRow = skillItems.slice(0, midpoint);
+  const bottomRow = skillItems.slice(midpoint);
+
   return (
-    <div className="relative overflow-hidden py-5">
-      <div className="relative w-full overflow-hidden">
-        <div className="grid grid-cols-3 gap-3 md:grid-cols-5 lg:grid-cols-7">
-          {skillItems.map((skill) => (
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              className="bg-gray-100 rounded-xl p-2"
-              key={`${skill.name}-${Math.random()}`}
-            >
-              {skill.svg}
-              <p className="text-sm text-gray-700 text-center font-medium">
-                {skill.name}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+    <div className="relative -mx-4 space-y-3 overflow-hidden py-6 md:-mx-40 md:space-y-4 md:py-8">
+      <SkillRow
+        items={topRow}
+        direction="left"
+      />
+      <SkillRow
+        items={bottomRow}
+        direction="right"
+      />
     </div>
   );
 };

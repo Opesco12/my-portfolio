@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import Skills from "../components/sections/Skills";
 import ProjectBox from "../components/ProjectBox";
-import WorkExperience from "../components/sections/WorkExperience";
+import Services from "../components/sections/Services";
 import About from "@/components/sections/About";
 
 import { myProjects } from "@/projects";
@@ -33,7 +33,7 @@ const Home = () => {
 
       <Skills />
 
-      <WorkExperience />
+      <Services />
 
       <motion.div
         initial={{ y: 50, opacity: 0 }}
