@@ -1,163 +1,137 @@
+import { Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
-  return (
-    <footer className="border-t border-slate-200 bg-light-primary px-4 py-10 md:px-40">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div>
-            <h3 className="text-2xl font-semibold text-slate-900">
-              Emmanuel Oyeleke
-            </h3>
-            <p className="mt-2 text-base text-slate-600">Front-end Developer</p>
-            <p className="mt-3 max-w-md text-sm text-slate-500">
-              Building thoughtful interfaces and scalable user experiences for
-              modern web and mobile products.
-            </p>
-          </div>
+  const navigationLinks = [
+    { label: "About", href: "/#about" },
+    { label: "Experience", href: "/#experience" },
+    { label: "Projects", href: "/projects" },
+    { label: "Contact", href: "/#contact" },
+  ];
 
-          <div className="flex flex-col gap-3 text-sm text-slate-600">
+  return (
+    <footer className="relative overflow-hidden border-t border-primary/10 bg-[#f6f2e9] px-5 sm:px-8 md:px-16 lg:px-40">
+      <div className="relative mx-auto max-w-7xl pb-0 pt-10 md:pt-20">
+        <div className="relative z-10 grid gap-10 border-b border-primary/10 py-5 md:grid-cols-[1.5fr_0.7fr_1fr] md:gap-12 md:py-10">
+          <div>
             <a
               href="/#about"
-              className="transition-colors hover:text-primary"
+              className="inline-flex items-center text-primary gap-3 font-display text-2xl font-semibold text-[#171717]"
             >
-              About
+              Emmanuel Oyeleke
             </a>
-            <a
-              href="/#projects"
-              className="transition-colors hover:text-primary"
+            <p className="mt-4 max-w-sm text-sm leading-6 text-[#5f5a54]">
+              I build thoughtful web and mobile experiences that are clear,
+              dependable, and enjoyable to use.
+            </p>
+
+            <div className="mt-6 flex items-center gap-3">
+              <motion.a
+                href="https://github.com/Opesco12"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                whileHover={{ y: -2 }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/15 text-[#4f4943] transition-colors hover:border-primary hover:bg-primary hover:text-white"
+              >
+                <Github
+                  size={16}
+                  strokeWidth={1.8}
+                />
+              </motion.a>
+              <motion.a
+                href="https://x.com/Opesco123"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X"
+                whileHover={{ y: -2 }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/15 text-[#4f4943] transition-colors hover:border-primary hover:bg-primary hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-3.5 w-3.5 fill-current"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+                </svg>
+              </motion.a>
+              <motion.a
+                href="https://www.linkedin.com/in/emmanuel-oyeleke-330469320/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                whileHover={{ y: -2 }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/15 text-[#4f4943] transition-colors hover:border-primary hover:bg-primary hover:text-white"
+              >
+                <Linkedin
+                  size={16}
+                  strokeWidth={1.8}
+                />
+              </motion.a>
+              <motion.a
+                href="mailto:oyelekemmanuel@gmail.com"
+                aria-label="Email"
+                whileHover={{ y: -2 }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-primary/15 text-[#4f4943] transition-colors hover:border-primary hover:bg-primary hover:text-white"
+              >
+                <Mail
+                  size={16}
+                  strokeWidth={1.8}
+                />
+              </motion.a>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#292621]">
+              Explore
+            </p>
+            <nav
+              aria-label="Footer navigation"
+              className="mt-5 flex flex-col items-start gap-3"
             >
-              Projects
-            </a>
+              {navigationLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-[#625c55] transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#292621]">
+              Get in touch
+            </p>
+            <p className="mt-5 max-w-xs text-sm leading-6 text-[#625c55]">
+              Have a role, project, or collaboration in mind? I&apos;d love to
+              hear about it.
+            </p>
             <a
-              href="/#contact"
-              className="transition-colors hover:text-primary"
+              href="mailto:oyelekemmanuel@gmail.com"
+              className="mt-5 inline-flex border-b border-primary pb-1 text-sm font-medium text-primary transition-opacity hover:opacity-70"
             >
-              Contact
+              oyelekemmanuel@gmail.com
             </a>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-4">
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
-          >
-            <a
-              href="https://github.com/Opesco12"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                width="35"
-                height="35"
-                viewBox="0 0 30 30"
-              >
-                <path d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z"></path>
-              </svg>
-            </a>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
-          >
-            <a
-              href="https://x.com/Opesco123"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                width="35"
-                height="35"
-                viewBox="0 0 30 30"
-              >
-                <path d="M26.37,26l-8.795-12.822l0.015,0.012L25.52,4h-2.65l-6.46,7.48L11.28,4H4.33l8.211,11.971L12.54,15.97L3.88,26h2.65 l7.182-8.322L19.42,26H26.37z M10.23,6l12.34,18h-2.1L8.12,6H10.23z"></path>
-              </svg>
-            </a>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
-          >
-            <a
-              href="https://www.linkedin.com/in/emmanuel-oyeleke-330469320/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                width="35"
-                height="35"
-                viewBox="0 0 48 48"
-              >
-                <path
-                  fill="#0288D1"
-                  d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"
-                ></path>
-                <path
-                  fill="#FFF"
-                  d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z"
-                ></path>
-              </svg>
-            </a>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            className="h-11 w-11 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center"
-          >
-            <a
-              href="mailto:oyelekemmanuel@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                width="35"
-                height="35"
-                viewBox="0 0 48 48"
-              >
-                <path
-                  fill="#4caf50"
-                  d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
-                ></path>
-                <path
-                  fill="#1e88e5"
-                  d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"
-                ></path>
-                <polygon
-                  fill="#e53935"
-                  points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"
-                ></polygon>
-                <path
-                  fill="#c62828"
-                  d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"
-                ></path>
-                <path
-                  fill="#fbc02d"
-                  d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"
-                ></path>
-              </svg>
-            </a>
-          </motion.div>
+        <div className="relative z-10 flex flex-col gap-2 pt-6 text-xs text-[#756e66] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} Emmanuel Oyeleke. All rights reserved.</p>
+          <p>Built by me.</p>
         </div>
 
-        <div className="mt-8 border-t border-slate-200 pt-5">
-          <p className="text-sm text-slate-500">
-            © {year} Emmanuel Oyeleke. Built with care.
-          </p>
-        </div>
+        <p
+          aria-hidden="true"
+          className="pointer-events-none mt-12 hidden select-none bg-gradient-to-b from-primary/[0.4] via-primary/[0.1] to-transparent bg-clip-text text-center font-display text-[clamp(7rem,18vw,17rem)] font-medium leading-[0.8] tracking-[-0.07em] text-transparent md:block"
+        >
+          Emmanuel
+        </p>
       </div>
     </footer>
   );
