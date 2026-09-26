@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,6 +12,15 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 8);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== "/") {
@@ -87,7 +97,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/30 backdrop-blur-md border-b border-white/20 py-2 px-4 md:px-40">
+    <nav
+      className={`sticky top-0 z-50 border-b px-4 py-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 md:px-40 ${
+        isScrolled
+          ? "border-white/40 bg-white/25 shadow-[0_8px_32px_rgba(75,46,29,0.08)] backdrop-blur-2xl backdrop-saturate-150"
+          : "border-transparent bg-[#f6f2e9] shadow-none backdrop-blur-none"
+      }`}
+    >
       <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-4">
         <div>
           <p className="text-4xl px-5 md:text-5xl text-primary font-extrabold">
