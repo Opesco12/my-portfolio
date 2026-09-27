@@ -3,16 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
-const productionHost =
-  process.env.VERCEL_PROJECT_PRODUCTION_URL ??
-  process.env.VITE_VERCEL_PROJECT_PRODUCTION_URL ??
-  process.env.VITE_SITE_URL;
-
-const siteUrl = productionHost
-  ? productionHost.startsWith("http")
-    ? productionHost.replace(/\/$/, "")
-    : `https://${productionHost}`
-  : "http://localhost:5173";
+const siteUrl = "https://emmanuel-oyeleke.vercel.app";
 
 // https://vite.dev/config/
 export default defineConfig({
