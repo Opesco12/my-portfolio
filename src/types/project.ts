@@ -11,8 +11,6 @@ export type Project = {
     category: string;
     role: string;
     overview: string;
-    challenge: string;
-    solution: string;
     outcome: string;
     features: string[];
   };

@@ -100,10 +100,6 @@ export const myProjects: Project[] = [
       role: "Frontend development · Firebase integration",
       overview:
         "Yonmi's Gloss is an e-commerce experience created for a lip gloss brand. It brings product discovery, detailed product information, customer reviews, and purchasing into one focused storefront, while giving the business a private dashboard for day-to-day management.",
-      challenge:
-        "The brand needed more than a visual product catalogue. Customers needed a clear path from discovering a product to making a purchase, while the business owner needed a practical way to update products and keep track of orders and customers without relying on a developer for routine changes.",
-      solution:
-        "I built the customer-facing storefront and the administrative experience as one connected product. The storefront keeps browsing simple and puts the products first, while the Firebase-powered dashboard gives the business control over its catalogue, orders, and customer records.",
       outcome:
         "The result is a single system that supports both sides of the business: a polished shopping experience for customers and a straightforward management workflow for the brand.",
       features: [

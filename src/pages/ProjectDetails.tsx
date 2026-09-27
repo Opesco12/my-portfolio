@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import QRCode from "react-qr-code";
 import Lightbox from "yet-another-react-lightbox";
@@ -206,44 +206,17 @@ const ProjectDetails = () => {
 
             {caseStudy && (
               <>
-                <div className="grid gap-5 md:grid-cols-2">
-                  <section className="rounded-2xl border border-primary/10 bg-[#f6f2e9] p-6 md:p-8">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                      The challenge
-                    </p>
-                    <p className="mt-4 leading-7 text-[#625c55]">
-                      {caseStudy.challenge}
-                    </p>
-                  </section>
-
-                  <section className="rounded-2xl border border-primary/10 bg-[#f6f2e9] p-6 md:p-8">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                      The solution
-                    </p>
-                    <p className="mt-4 leading-7 text-[#625c55]">
-                      {caseStudy.solution}
-                    </p>
-                  </section>
-                </div>
-
                 <section>
                   <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
                     Key features
                   </p>
-                  <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <ul className="mt-6 grid gap-x-8 sm:grid-cols-2">
                     {caseStudy.features.map((feature) => (
                       <li
                         key={feature}
-                        className="flex items-start gap-3 rounded-xl border border-primary/10 p-4 text-[#403b36]"
+                        className="border-t border-primary/20 py-5 text-lg font-medium leading-7 text-[#403b36]"
                       >
-                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-lighter-primary text-primary">
-                          <Check
-                            size={14}
-                            strokeWidth={2}
-                            aria-hidden="true"
-                          />
-                        </span>
-                        <span>{feature}</span>
+                        {feature}
                       </li>
                     ))}
                   </ul>
@@ -267,17 +240,10 @@ const ProjectDetails = () => {
             </p>
 
             <dl className="mt-6 space-y-6">
-              <div>
-                <dt className="text-xs uppercase tracking-[0.16em] text-[#8b8279]">
-                  Type
-                </dt>
-                <dd className="mt-1.5 font-medium text-[#292621]">{category}</dd>
-              </div>
-
               {caseStudy?.role && (
                 <div>
                   <dt className="text-xs uppercase tracking-[0.16em] text-[#8b8279]">
-                    My role
+                    Project scope
                   </dt>
                   <dd className="mt-1.5 font-medium leading-6 text-[#292621]">
                     {caseStudy.role}
