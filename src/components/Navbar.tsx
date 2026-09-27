@@ -243,9 +243,6 @@ const Navbar = () => {
               </div>
 
               <div className="flex flex-1 flex-col justify-center">
-                <p className="mb-7 text-xs font-semibold uppercase tracking-[0.2em] text-light-primary">
-                  Navigate
-                </p>
                 <ul className="space-y-2">
                   {navLinks.map((link, index) => {
                     const isActive = activeLink === link.id;

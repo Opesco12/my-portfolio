@@ -4,9 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 const productionHost =
-  process.env.VITE_SITE_URL ??
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ??
   process.env.VITE_VERCEL_PROJECT_PRODUCTION_URL ??
-  process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  process.env.VITE_SITE_URL;
 
 const siteUrl = productionHost
   ? productionHost.startsWith("http")
