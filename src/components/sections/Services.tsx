@@ -3,21 +3,18 @@ import { motion } from "framer-motion";
 
 const services = [
   {
-    number: "01",
     title: "Web Application Development",
     description:
       "Responsive, accessible web applications and dashboards built around your product goals and users.",
     icon: MonitorSmartphone,
   },
   {
-    number: "02",
     title: "Mobile App Development",
     description:
       "Cross-platform mobile applications for iOS and Android, built with React Native and Expo.",
     icon: Smartphone,
   },
   {
-    number: "03",
     title: "Landing Pages & Business Websites",
     description:
       "Fast, polished websites that communicate your offer clearly and work beautifully on every screen.",
@@ -46,14 +43,14 @@ const Services = () => {
         </div>
 
         <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-3">
-          {services.map(({ number, title, description, icon: Icon }) => (
+          {services.map(({ title, description, icon: Icon }) => (
             <motion.article
               key={title}
               whileHover={{ y: -6 }}
               transition={{ duration: 0.2 }}
               className="group flex min-h-72 flex-col rounded-2xl border border-primary/10 bg-white p-6 shadow-sm md:p-7"
             >
-              <div className="flex items-start justify-between">
+              <div className="flex items-start">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-lighter-primary text-primary transition-colors group-hover:bg-primary group-hover:text-white">
                   <Icon
                     size={23}
@@ -61,9 +58,6 @@ const Services = () => {
                     aria-hidden="true"
                   />
                 </div>
-                <span className="font-display text-lg italic text-primary/60">
-                  {number}
-                </span>
               </div>
 
               <div className="mt-auto pt-10">

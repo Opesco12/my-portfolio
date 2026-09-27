@@ -18,16 +18,22 @@ const featuredProjects = [
       "A secure investment platform that gives users a clear, dependable way to access and manage their portfolios across web and mobile.",
   },
   {
-    project: myProjects[0],
-    category: "Fintech · Investment Dashboard",
+    project: myProjects[6],
+    category: "E-commerce · Web Application",
     summary:
-      "A Sharia-compliant investment experience designed to make ethical savings, investments, and charitable giving easier to manage.",
+      "A focused e-commerce experience that gives customers a simple way to discover and purchase products while helping the brand manage its day-to-day operations.",
   },
   {
     project: myProjects[2],
     category: "Education · Mobile App",
     summary:
       "A digital handbook that helps University of Ilorin freshmen find essential faculty information and navigate their campus.",
+  },
+  {
+    project: myProjects[0],
+    category: "Fintech · Investment Dashboard",
+    summary:
+      "A Sharia-compliant investment experience designed to make ethical savings, investments, and charitable giving easier to manage.",
   },
 ];
 

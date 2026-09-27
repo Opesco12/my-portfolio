@@ -7,4 +7,13 @@ export type Project = {
   mobileApp?: boolean;
   expoUrl?: string;
   url?: string;
+  caseStudy?: {
+    category: string;
+    role: string;
+    overview: string;
+    challenge: string;
+    solution: string;
+    outcome: string;
+    features: string[];
+  };
 };

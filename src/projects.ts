@@ -7,7 +7,7 @@ export const myProjects: Project[] = [
     description:
       "Ethikavest is a Sharia-compliant investment dashboard designed to help users manage ethical savings, investments, and charitable giving. It opens with a secure sign-in experience that reinforces trust and accessibility for modern Muslim investors. The interface is clean and user-focused, making it easy to navigate account access and financial tools. The product emphasizes Islamic finance principles while delivering a polished digital experience. It is built to support ethical wealth growth through compliant investment options and convenient dashboard access.",
     images: [
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/ethikavest.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/Screenshot%202026-09-27%20at%2000.07.53.png",
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/ethikavest_2.png",
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/ethikavest_3.png",
       "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/ethikavest_1.png",
@@ -21,9 +21,8 @@ export const myProjects: Project[] = [
     description:
       "Pathway Asset Management is a secure digital platform for investors to access and manage their asset portfolio online. The product begins with a polished login experience and provides a trusted gateway into investment services from a Securities and Exchange Commission–regulated firm in Nigeria. It also includes user support features like embedded chat guidance and clear compliance notice, helping users sign in with confidence. In addition to the web portal, the project includes a companion mobile app built with Expo, and it is launched on both Google Play Store and Apple App Store. ",
     images: [
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_2.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/pathway_3.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/Screenshot%202026-09-27%20at%2017.38.36.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/Screenshot%202026-09-27%20at%2000.01.37.png",
     ],
     technologies: ["typescript", "react", "react-native", "expo"],
     // mobileApp: true,
@@ -35,10 +34,10 @@ export const myProjects: Project[] = [
     description:
       " The app is built using react native leveraging expo managed workflow. Its main purpose is to serve as a digital handbook to freshmen of the faculty of communication and information sciences in university of ilorin, ilorin, Kwara State. The app also features a map which students can easily use to navigate around campus.",
     images: [
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/cissa.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/cissa_1.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/cissa_2.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/cissa_3.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/cissa_1.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/cissa.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/cissa_2.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/cissa_3.png",
     ],
     technologies: ["typescript", "react native", "expo", "google-maps"],
     expoUrl:
@@ -65,9 +64,7 @@ export const myProjects: Project[] = [
     subtitle: "A Digital asset management platform",
     description:
       "Reliance Asset Management is a secure digital platform for investors to access and manage their asset portfolio online. The product begins with a polished login experience and provides a trusted gateway into investment services from a Securities and Exchange Commission–regulated firm in Nigeria. It also includes user support features like embedded chat guidance and clear compliance notice, helping users sign in with confidence. The design focuses on a professional, modern authentication flow and simplifies the first step of accessing investment account management tools. The project also includes a companion mobile app built with Expo, delivering both web and mobile access for investors. ",
-    images: [
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/reliance.png",
-    ],
+    images: ["https://cdn.byteship.cloud/f/p_BsXtyz2w/reliance.png"],
     technologies: ["typescript", "react", "react-native", "expo", "postman"],
     // mobileApp: true,
   },
@@ -93,13 +90,29 @@ export const myProjects: Project[] = [
     description:
       "This project is an e-commerce platform built specifically for a lip gloss brand. The platform is designed to provide a seamless shopping experience for customers, allowing them to browse and purchase a variety of lip gloss products. The website features a clean and modern design, with easy navigation and a user-friendly interface. It includes product listings, detailed descriptions and customer reviews. There is also an in-built admin dashboard meant to serve as a content management system for the client to easily manage their products, orders and customers.",
     images: [
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/yonmi.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/yonmi_1.png",
-      "https://bgupucqvtivewmygbhum.supabase.co/storage/v1/object/public/images/yonmi_2.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/yonmi_1.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/yonmi_2.png",
+      "https://cdn.byteship.cloud/f/p_BsXtyz2w/yonmi.png",
     ],
     technologies: ["typescript", "react", "tailwind", "firebase"],
-    expoUrl:
-      "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
-    url: "https://expo.dev/preview/update?message=used+asyncstorage+instead+of+firebase&updateRuntimeVersion=1.0.0&createdAt=2025-08-08T17%3A15%3A36.021Z&slug=exp&projectId=9ce01154-0b66-4486-bbc2-58150a87043b&group=e6382dc4-0f13-4754-8bab-62fec49daa64",
+    caseStudy: {
+      category: "E-commerce · Web Application",
+      role: "Frontend development · Firebase integration",
+      overview:
+        "Yonmi's Gloss is an e-commerce experience created for a lip gloss brand. It brings product discovery, detailed product information, customer reviews, and purchasing into one focused storefront, while giving the business a private dashboard for day-to-day management.",
+      challenge:
+        "The brand needed more than a visual product catalogue. Customers needed a clear path from discovering a product to making a purchase, while the business owner needed a practical way to update products and keep track of orders and customers without relying on a developer for routine changes.",
+      solution:
+        "I built the customer-facing storefront and the administrative experience as one connected product. The storefront keeps browsing simple and puts the products first, while the Firebase-powered dashboard gives the business control over its catalogue, orders, and customer records.",
+      outcome:
+        "The result is a single system that supports both sides of the business: a polished shopping experience for customers and a straightforward management workflow for the brand.",
+      features: [
+        "Browsable product catalogue",
+        "Detailed product pages and customer reviews",
+        "Customer purchasing flow",
+        "Private administration dashboard",
+        "Product, order, and customer management",
+      ],
+    },
   },
 ];

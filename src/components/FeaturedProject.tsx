@@ -33,11 +33,11 @@ const FeaturedProject = ({
       }`}
     >
       <div
-        className={`flex min-h-64 items-center bg-[#ead8cc] p-4 sm:p-6 md:min-h-[430px] md:p-8 ${
+        className={`flex min-h-64 items-center bg-[#ead8cc] p-4  md:min-h-[430px]  ${
           imageOnRight ? "md:order-2" : ""
         }`}
       >
-        <div className="h-full w-full overflow-hidden rounded-2xl bg-white shadow-[0_18px_50px_rgba(75,46,29,0.15)]">
+        <div className="h-full w-full overflow-hidden rounded-2xl bg-white ">
           <img
             src={project.images[0]}
             alt={`Preview of ${project.title}`}
@@ -52,14 +52,9 @@ const FeaturedProject = ({
           imageOnRight ? "md:order-1" : ""
         }`}
       >
-        <div className="flex items-center justify-between gap-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            {category}
-          </p>
-          <span className="font-display text-lg italic text-primary/55">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+          {category}
+        </p>
 
         <h3 className="mt-5 font-display text-3xl font-medium leading-tight text-[#171717] sm:text-4xl">
           {project.title}
